@@ -25,14 +25,16 @@ const BlogList = () => {
     });
 
     const blogComponents = filteredBlogs.map((blog) => {
-        return <Blog key={blog.id} blog={blog} />
+        return <Blog class="blog" key={blog.id} blog={blog} />
     });
 
     return (
         <>
             <input type="text" onChange={filterBlogs}></input>
             <p>Here is your blogs:</p>
-            {blogComponents}
+            <div id="blogs_list">
+                {blogComponents}
+            </div>
         </>
     );
 }

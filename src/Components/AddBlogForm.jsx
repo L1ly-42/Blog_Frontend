@@ -4,14 +4,11 @@ import './AddBlogForm.css'
 const AddBlogForm = () => {
 const [blogs, setBlogs] = useState([]);
 
+const [name, setName] = useState("");
+const [userId, setUserId] = useState(1);
 
 
-const [blog, setBlog] = useState({
-    name : "Dont worry about it", 
-    dateOfCreation :"02/04/2014",
-    timeOfCreation : "16:00", 
-    userId : 3
-})
+const [blog, setBlog] = useState({})
 
 const loadBlogs = async () => {
     const response = await fetch("http://localhost:8080/blogs");
@@ -27,12 +24,37 @@ const postBlogs = async (blog) => {
         body: JSON.stringify(blog)
     })
     const savedBlog = await response.json();
-    setBlogs([...blogs,savedBlog]);
+    console.log(savedBlog);
+    // setBlogs([...blogs,savedBlog]);
     
 }
 
-const handleSubmit = () => {
-    postBlogs(blog);
+const handleSubmit = (event) => {
+    event.preventDefault();
+    const date = Date.now();
+    let currentDate = new Date(date)
+    const copiedBlog = {...blog};
+    copiedBlog["dateOfCreation"] = `${currentDate.getDay()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`;
+    copiedBlog["timeOfCreation"] = `${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()}`;
+    copiedBlog["name"] = "Dont worry about it";
+    copiedBlog["userId"] = userId;
+    setBlog(...copiedBlog);
+
+    console.log(blog);
+
+
+    
+
+
+
+
+    // const newBlog = {
+    //     name : "Dont worry about it", 
+    //     dateOfCreation : "now",
+    //     timeOfCreation : "nowww",
+    //     userId: 1
+    // };
+    // postBlogs(newBlog);
 }
 
 useEffect(() =>{
@@ -42,18 +64,23 @@ useEffect(() =>{
     
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name"> New Blog Name:</label>
-                <input type= "text" id="newBlogName" name='name'></input>
 
+        <button onClick={handleSubmit}>Add Blog</button>
+            {/* <form onSubmit={handleSubmit}>
+                <label htmlFor="name"> New Blog Name:</label>
+                <input 
+                type= "text" 
+                id="newBlogName" 
+                name='name' ></input> */}
+{/* 
                 <label htmlFor="date"> Date Created:</label>
                 <input type= "text" id="newBlogDate" name='date'></input>
 
                 <label htmlFor="time"> Time Created:</label>
-                <input type= "text" id="newBlogTime" name='time'></input>
-
-                <input type="submit" value='Add Blog'/>
-            </form>
+                <input type= "text" id="newBlogTime" name='time'></input> */}
+{/* 
+                <input type="submit" value='Add Blog'/> */}
+            {/* </form> */}
         </>
 
     );

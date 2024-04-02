@@ -3,6 +3,7 @@ import NavBar from "../Components/NavBar";
 import BlogList from "../Components/BlogList";
 import AddBlogForm from "../Components/AddBlogForm";
 import EditBlogForm from "../Components/EditBlogForm";
+import ExpandedBlog from "../Components/ExpandedBlog";
 
 const BlogContainer = () => {
     const blog_id = 1;
@@ -22,6 +23,10 @@ const BlogContainer = () => {
                 {
                     path: "/1/my_blogs",
                     element: <BlogList />
+                },
+                {
+                    path: `/1/blogs/${blog_id}`,
+                    element: <ExpandedBlog />
                 },
                 {
                     path: "/1/my_blogs/new",

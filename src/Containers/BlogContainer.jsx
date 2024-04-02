@@ -4,6 +4,7 @@ import BlogList from "../Components/BlogList";
 import AddBlogForm from "../Components/AddBlogForm";
 import EditBlogForm from "../Components/EditBlogForm";
 import ExpandedBlog from "../Components/ExpandedBlog";
+import './BlogContainer.css';
 
 const BlogContainer = () => {
     const blog_id = 1;

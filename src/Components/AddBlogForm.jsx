@@ -8,6 +8,11 @@ const loadBlogs = async () => {
     const response = await fetch("http://localhost:8080/blogs");
     const jsonData = await response.json();
     console.log(jsonData);
+    setBlogs(jsonData);
+}
+
+const postBlogs = async () => {
+    const response = await fetch()
 }
 
 useEffect(() =>{

@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { useEffect, useState } from "react";
 import NavBar from "../Components/NavBar";
 import BlogList from "../Components/BlogList";
 import AddBlogForm from "../Components/AddBlogForm";
@@ -7,6 +8,28 @@ import ExpandedBlog from "../Components/ExpandedBlog";
 import './BlogContainer.css';
 
 const BlogContainer = () => {
+
+    const [blogs, setBlogs] = useState([]);
+    const [myBlogs, setMyBlogs] = useState([]);
+    const [filteredBlogs, setFilteredBlogs] = useState([]);
+
+    const fetchBlogs = async () => {
+        const response = await fetch("http://localhost:8080/blogs");
+        const data = await response.json();
+        console.log(data);
+        setBlogs(data);
+        setFilteredBlogs(data);
+    }
+
+    useEffect(() => {
+        fetchBlogs();
+    }, []);
+
+    const filterBlogs = ((event) => {
+        const filteredList = blogs.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
+        setFilteredBlogs(filteredList);
+    });
+
     const blog_id = 1;
     const BlogRoutes = createBrowserRouter([
         {
@@ -19,7 +42,7 @@ const BlogContainer = () => {
             children:[
                 {
                     path:"/1/all_blogs",
-                    element: <BlogList />
+                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} />
                 },
                 {
                     path: "/1/my_blogs",

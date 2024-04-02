@@ -24,9 +24,7 @@ const postBlogs = async (blog) => {
         body: JSON.stringify(blog)
     })
     const savedBlog = await response.json();
-    console.log(savedBlog);
-    // setBlogs([...blogs,savedBlog]);
-    
+    console.log(savedBlog);    
 }
 
 const handleSubmit = (event) => {

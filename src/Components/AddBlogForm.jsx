@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import './AddBlogForm.css'
 
@@ -5,9 +6,9 @@ const AddBlogForm = ({postBlogs}) => {
 
 const [userId, setUserId] = useState(1);
 const [blog, setBlog] = useState(null);
+const navigate = useNavigate();
 
 const handleSubmit = (event) => {
-    console.log(event)
     event.preventDefault();
     const date = Date.now();
     let currentDate = new Date(date)
@@ -23,6 +24,7 @@ const handleSubmit = (event) => {
 useEffect(()=>{
     if(blog !== null){
         postBlogs(blog);
+        navigate("/1/my_blogs");
     }
 }, [blog])
     

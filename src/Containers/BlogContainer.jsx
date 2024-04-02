@@ -12,7 +12,7 @@ const BlogContainer = () => {
     const [blogs, setBlogs] = useState([]);
     const [myBlogs, setMyBlogs] = useState([]);
     const [filteredBlogs, setFilteredBlogs] = useState([]);
-
+    
     const fetchBlogs = async () => {
         const response = await fetch("http://localhost:8080/blogs");
         const data = await response.json();
@@ -33,6 +33,10 @@ const BlogContainer = () => {
     useEffect(() => {
         fetchBlogs();
     }, []);
+
+    useEffect(() => {
+        setFilteredBlogs([...blogs]);
+    }, [blogs]);
 
     const filterBlogs = ((event) => {
         const filteredList = blogs.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
@@ -55,7 +59,7 @@ const BlogContainer = () => {
                 },
                 {
                     path: "/1/my_blogs",
-                    element: <BlogList />
+                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} />
                 },
                 {
                     path: `/1/blogs/${blog_id}`,

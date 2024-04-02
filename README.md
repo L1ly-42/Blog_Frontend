@@ -3,10 +3,10 @@
 ## Table of Contents 
 1. [Project Description](#project-description)
 2. [Installation instructions](#installation-instructions)
-3. [Diagrams](#diagrams)
-4. [MVP and Extensions](#mvp-and-extensions)
-5. [Credits and Acknowledgements](#credits-and-acknowledgements)
-6. [Badges](#badges)
+3. [MVP and Extensions](#mvp-and-extensions)
+4. [Diagrams](#diagrams)
+6. [Credits and Acknowledgements](#credits-and-acknowledgements)
+7. [Badges](#badges)
 
 ## Project Description
 ### Aims
@@ -19,17 +19,22 @@
 3. 
 4. 
 5. 
+## MVP and Extensions
+### MVP
+### Extensions
+
 
 ## Diagrams
 ### Wireframes
 ### Component Diagram
 
 
-## MVP and Extensions
-### MVP
-### Extensions
-
 ## Credits and Acknowledgements
+**Project Team**
+- Hannah Riley  (https://github.com/H8S8)
+- Leila Peltier (https://github.com/L1ly-42)
+-  Maya Tetteh  (https://github.com/MTBNTA)
+- Sahil Patel   (https://github.com/sahilpatel1906)
 
 
 ## Badges

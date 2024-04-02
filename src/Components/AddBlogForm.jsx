@@ -3,7 +3,9 @@ import './AddBlogForm.css'
 
 const AddBlogForm = () => {
 const [blogs, setBlogs] = useState([]);
-const [name, setName] = useState("");
+
+
+
 const [blog, setBlog] = useState({
     name : "Dont worry about it", 
     dateOfCreation :"02/04/2014",
@@ -40,8 +42,18 @@ useEffect(() =>{
     
     return (
         <>
-            <p>Blog creation form!</p>
-            <button onClick={handleSubmit}>Add Blog</button>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="name"> New Blog Name:</label>
+                <input type= "text" id="newBlogName" name='name'></input>
+
+                <label htmlFor="date"> Date Created:</label>
+                <input type= "text" id="newBlogDate" name='date'></input>
+
+                <label htmlFor="time"> Time Created:</label>
+                <input type= "text" id="newBlogTime" name='time'></input>
+
+                <input type="submit" value='Add Blog'/>
+            </form>
         </>
 
     );

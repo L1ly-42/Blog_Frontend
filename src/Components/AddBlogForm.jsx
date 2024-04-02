@@ -5,7 +5,7 @@ const AddBlogForm = () => {
 const [blogs, setBlogs] = useState([]);
 
 const loadBlogs = async () => {
-    const response = await fetch("localhost:8080/blogs");
+    const response = await fetch("http://localhost:8080/blogs");
     const jsonData = await response.json();
     console.log(jsonData);
 }

@@ -16,9 +16,18 @@ const BlogContainer = () => {
     const fetchBlogs = async () => {
         const response = await fetch("http://localhost:8080/blogs");
         const data = await response.json();
-        console.log(data);
         setBlogs(data);
         setFilteredBlogs(data);
+    }
+
+    const postBlogs = async (blog) => {
+        const response = await fetch("http://localhost:8080/blogs", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(blog)
+        })
+        const savedBlog = await response.json();
+        setBlogs([...blogs,savedBlog]);
     }
 
     useEffect(() => {
@@ -54,7 +63,7 @@ const BlogContainer = () => {
                 },
                 {
                     path: "/1/my_blogs/new",
-                    element: <AddBlogForm />
+                    element: <AddBlogForm postBlogs={postBlogs} />
                 },
                 {
                     path: `/1/my_blogs/${blog_id}/edit`,

@@ -1,31 +1,10 @@
 import { useEffect, useState } from 'react';
 import './AddBlogForm.css'
 
-const AddBlogForm = () => {
-const [blogs, setBlogs] = useState([]);
+const AddBlogForm = ({postBlogs}) => {
 
-const [name, setName] = useState("");
 const [userId, setUserId] = useState(1);
-
-
-const [blog, setBlog] = useState(null)
-
-const loadBlogs = async () => {
-    const response = await fetch("http://localhost:8080/blogs");
-    const jsonData = await response.json();
-    console.log(jsonData);
-    setBlogs(jsonData);
-}
-
-const postBlogs = async (blog) => {
-    const response = await fetch("http://localhost:8080/blogs", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(blog)
-    })
-    const savedBlog = await response.json();
-    console.log(savedBlog);    
-}
+const [blog, setBlog] = useState(null);
 
 const handleSubmit = (event) => {
     console.log(event)
@@ -46,11 +25,6 @@ useEffect(()=>{
         postBlogs(blog);
     }
 }, [blog])
-
-useEffect(() =>{
-    loadBlogs();
-},[])
-
     
     return (
         <>

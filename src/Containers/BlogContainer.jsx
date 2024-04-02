@@ -15,6 +15,10 @@ const BlogContainer = () => {
                 {
                     path:"/1/all_blogs",
                     element: <BlogList />
+                },
+                {
+                    path: "/1/my_blogs",
+                    element: <BlogList />
                 }
             ]
         }

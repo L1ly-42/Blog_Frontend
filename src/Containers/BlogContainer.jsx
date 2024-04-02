@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import NavBar from "../Components/NavBar";
 import BlogList from "../Components/BlogList";
+import AddBlogForm from "../Components/AddBlogForm";
 
 const BlogContainer = () => {
     const BlogRoutes = createBrowserRouter([
@@ -19,6 +20,10 @@ const BlogContainer = () => {
                 {
                     path: "/1/my_blogs",
                     element: <BlogList />
+                },
+                {
+                    path: "/1/my_blogs/new",
+                    element: <AddBlogForm />
                 }
             ]
         }

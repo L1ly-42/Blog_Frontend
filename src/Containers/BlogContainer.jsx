@@ -38,8 +38,8 @@ const BlogContainer = () => {
         setFilteredBlogs([...blogs]);
     }, [blogs]);
 
-    const filterBlogs = ((event) => {
-        const filteredList = blogs.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
+    const filterBlogs = ((event, blogsToFilter) => {
+        const filteredList = blogsToFilter.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
         setFilteredBlogs(filteredList);
     });
 
@@ -55,7 +55,7 @@ const BlogContainer = () => {
             children:[
                 {
                     path:"/1/all_blogs",
-                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} />
+                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} blogsToFilter={blogs} />
                 },
                 {
                     path: "/1/my_blogs",

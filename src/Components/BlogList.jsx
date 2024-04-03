@@ -1,6 +1,6 @@
 import Blog from './Blog';
 import './BlogList.css'
-const BlogList = ({filterFunction, filteredBlogs, blogsToFilter}) => {
+const BlogList = ({filterFunction, filteredBlogs, blogsToFilter, title}) => {
 
     const blogComponents = filteredBlogs.map((blog) => {
         return <Blog class="blog" key={blog.id} blog={blog} />
@@ -12,8 +12,9 @@ const BlogList = ({filterFunction, filteredBlogs, blogsToFilter}) => {
 
     return (
         <>
-            <input type="text" onChange={handleChange}></input>
-            <p>Here is your blogs:</p>
+            <h2>{title}</h2>
+            <label htmlFor="Search">Search: </label>
+            <input type="text" name="Search" onChange={handleChange}></input>
             <div id="blogs_list">
                 {blogComponents}
             </div>

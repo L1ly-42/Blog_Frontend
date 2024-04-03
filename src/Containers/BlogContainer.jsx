@@ -73,11 +73,11 @@ const BlogContainer = () => {
             children:[
                 {
                     path:"/1/all_blogs",
-                    element: <BlogList filteredBlogs={filteredBlogs} filterFunction={filterBlogs} blogsToFilter={blogs} />
+                    element: <BlogList title="All Blogs" filteredBlogs={filteredBlogs} filterFunction={filterBlogs} blogsToFilter={blogs} />
                 },
                 {
                     path: "/1/my_blogs",
-                    element: <BlogList filteredBlogs={filteredMyBlogs} filterFunction={filterMyBlogs} blogsToFilter={myBlogs} />
+                    element: <BlogList title="My Blogs" filteredBlogs={filteredMyBlogs} filterFunction={filterMyBlogs} blogsToFilter={myBlogs} />
                 },
                 {
                     path: `/1/blogs/${blog_id}`,

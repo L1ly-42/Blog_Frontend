@@ -38,6 +38,17 @@ const BlogContainer = () => {
         setBlogs([...blogs,savedBlog]);
     }
 
+    const updateBlog = async (blog) => {
+        await fetch(`http://localhost:8080/blogs/${blog.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(blog)
+        })
+        await fetchMyBlogs();
+    };
+
     useEffect(() => {
         fetchBlogs();
     }, []);
@@ -60,6 +71,12 @@ const BlogContainer = () => {
         const filteredList = blogsToFilter.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
         setFilteredMyBlogs(filteredList);
     });
+  
+      const editBlogLoader = ({params}) => {
+        return myBlogs.find(blog =>{
+            return blog.id === parseInt(params.id);
+        });
+    };
 
     const blog_id = 1;
     const BlogRoutes = createBrowserRouter([
@@ -89,7 +106,8 @@ const BlogContainer = () => {
                 },
                 {
                     path: `/1/my_blogs/${blog_id}/edit`,
-                    element: <EditBlogForm />
+                    loader: editBlogLoader,
+                    element: <EditBlogForm updateBlog={updateBlog} />
                 }
             ]
         }

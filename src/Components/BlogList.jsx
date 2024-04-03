@@ -1,9 +1,9 @@
 import Blog from './Blog';
 import './BlogList.css'
-const BlogList = ({filterFunction, filteredBlogs, blogsToFilter, title}) => {
+const BlogList = ({filterFunction, filteredBlogs, blogsToFilter, title, displayMyBlogs}) => {
 
     const blogComponents = filteredBlogs.map((blog) => {
-        return <Blog class="blog" key={blog.id} blog={blog} />
+        return <Blog class="blog" key={blog.id} blog={blog} blogEditable={displayMyBlogs}/>
     });
 
     const handleChange = ((event) => {

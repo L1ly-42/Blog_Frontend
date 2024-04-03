@@ -1,19 +1,20 @@
 import Blog from './Blog';
 import './BlogList.css'
-const BlogList = ({filterBlogs, filteredBlogs, blogsToFilter}) => {
+const BlogList = ({filterFunction, filteredBlogs, blogsToFilter, title, displayMyBlogs}) => {
 
     const blogComponents = filteredBlogs.map((blog) => {
-        return <Blog class="blog" key={blog.id} blog={blog} />
+        return <Blog class="blog" key={blog.id} blog={blog} blogEditable={displayMyBlogs}/>
     });
 
     const handleChange = ((event) => {
-        filterBlogs(event, blogsToFilter);
+        filterFunction(event, blogsToFilter);
     });
 
     return (
         <>
-            <input type="text" onChange={handleChange}></input>
-            <p>Here is your blogs:</p>
+            <h2>{title}</h2>
+            <label htmlFor="Search">Search: </label>
+            <input type="text" name="Search" onChange={handleChange}></input>
             <div id="blogs_list">
                 {blogComponents}
             </div>

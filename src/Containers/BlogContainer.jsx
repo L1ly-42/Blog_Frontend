@@ -12,6 +12,7 @@ const BlogContainer = () => {
     const [blogs, setBlogs] = useState([]);
     const [myBlogs, setMyBlogs] = useState([]);
     const [filteredBlogs, setFilteredBlogs] = useState([]);
+    const [filteredMyBlogs, setFilteredMyBlogs] = useState([]);
     
     const fetchBlogs = async () => {
         const response = await fetch("http://localhost:8080/blogs");
@@ -32,7 +33,7 @@ const BlogContainer = () => {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(blog)
-        })
+        });
         const savedBlog = await response.json();
         setBlogs([...blogs,savedBlog]);
     }
@@ -54,18 +55,28 @@ const BlogContainer = () => {
 
     useEffect(() => {
         setFilteredBlogs([...blogs]);
+        setMyBlogs(blogs.filter(blogs => blogs.user.id === 1));
     }, [blogs]);
+
+    useEffect(() => {
+        setFilteredMyBlogs([...myBlogs]);
+    }, [myBlogs]);
 
     const filterBlogs = ((event, blogsToFilter) => {
         const filteredList = blogsToFilter.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
         setFilteredBlogs(filteredList);
     });
 
-    const editBlogLoader = ({params}) => {
+    const filterMyBlogs = ((event, blogsToFilter) => {
+        const filteredList = blogsToFilter.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
+        setFilteredMyBlogs(filteredList);
+    });
+  
+      const editBlogLoader = ({params}) => {
         return myBlogs.find(blog =>{
             return blog.id === parseInt(params.id);
-        })
-    }
+        });
+    };
 
     const blog_id = 1;
     const BlogRoutes = createBrowserRouter([
@@ -79,11 +90,11 @@ const BlogContainer = () => {
             children:[
                 {
                     path:"/1/all_blogs",
-                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} blogsToFilter={blogs} />
+                    element: <BlogList title="All Blogs" filteredBlogs={filteredBlogs} filterFunction={filterBlogs} blogsToFilter={blogs} displayMyBlogs={false}/>
                 },
                 {
                     path: "/1/my_blogs",
-                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} blogsToFilter={myBlogs} />
+                    element: <BlogList title="My Blogs" filteredBlogs={filteredMyBlogs} filterFunction={filterMyBlogs} blogsToFilter={myBlogs} displayMyBlogs={true}/>
                 },
                 {
                     path: `/1/blogs/${blog_id}`,

@@ -20,6 +20,13 @@ const BlogContainer = () => {
         setFilteredBlogs(data);
     }
 
+    const fetchMyBlogs = async () => {
+        const response = await fetch("http://localhost:8080/blogs/1");
+        const data = await response.json();
+        setMyBlogs(data);
+        setFilteredBlogs(data);
+    }
+
     const postBlogs = async (blog) => {
         const response = await fetch("http://localhost:8080/blogs", {
             method: "POST",
@@ -59,7 +66,7 @@ const BlogContainer = () => {
                 },
                 {
                     path: "/1/my_blogs",
-                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} />
+                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} blogsToFilter={myBlogs} />
                 },
                 {
                     path: `/1/blogs/${blog_id}`,

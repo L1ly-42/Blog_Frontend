@@ -5,6 +5,7 @@ import BlogList from "../Components/BlogList";
 import AddBlogForm from "../Components/AddBlogForm";
 import EditBlogForm from "../Components/EditBlogForm";
 import ExpandedBlog from "../Components/ExpandedBlog";
+import Logo from "../Images/Logo.png"
 import './BlogContainer.css';
 
 const BlogContainer = () => {
@@ -123,10 +124,13 @@ const BlogContainer = () => {
     
     
     return ( 
-
         <>
-        <h1> Hello from BlogContainer!</h1>
-        <RouterProvider router={BlogRoutes}/>
+            <header>
+                <h1> Blogtopia! </h1>
+                <img src={Logo} id="logo"/>
+
+            </header>
+            <RouterProvider router={BlogRoutes}/>
         </>
 
     );

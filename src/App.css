@@ -1,7 +1,12 @@
 *{
 margin: 0;
+font-family: Impact, fantasy
 }
 
 body{
-    background-color: #F5CE92;
+    background-image: url("./Images/backgroundImage.jpg");
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    height: 100vh;
 }

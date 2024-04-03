@@ -32,7 +32,7 @@ useEffect(()=>{
         <>
 
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name"> New Blog Name:</label>
+                <label htmlFor="newBlogName"> New Blog Name:</label>
                 <input 
                 type= "text" 
                 id="newBlogName" 

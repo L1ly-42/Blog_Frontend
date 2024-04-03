@@ -21,13 +21,6 @@ const BlogContainer = () => {
         setFilteredBlogs(data);
     }
 
-    const fetchMyBlogs = async () => {
-        const response = await fetch("http://localhost:8080/blogs/1");
-        const data = await response.json();
-        setMyBlogs(data);
-        setFilteredBlogs(data);
-    }
-
     const postBlogs = async (blog) => {
         const response = await fetch("http://localhost:8080/blogs", {
             method: "POST",
@@ -46,7 +39,7 @@ const BlogContainer = () => {
             },
             body: JSON.stringify(blog)
         })
-        await fetchMyBlogs();
+        await fetchBlogs();
     };
 
     useEffect(() => {
@@ -72,9 +65,9 @@ const BlogContainer = () => {
         setFilteredMyBlogs(filteredList);
     });
   
-      const editBlogLoader = ({params}) => {
+    const editBlogLoader = ({params}) => {
         return myBlogs.find(blog =>{
-            return blog.id === parseInt(params.id);
+            return blog.id === parseInt(params.blog_id);
         });
     };
 
@@ -105,7 +98,7 @@ const BlogContainer = () => {
                     element: <AddBlogForm postBlogs={postBlogs} />
                 },
                 {
-                    path: `/1/my_blogs/${blog_id}/edit`,
+                    path: `/1/my_blogs/:blog_id/edit`,
                     loader: editBlogLoader,
                     element: <EditBlogForm updateBlog={updateBlog} />
                 }

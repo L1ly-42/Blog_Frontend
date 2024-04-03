@@ -14,14 +14,15 @@ const EditBlogForm = ({updateBlog}) => {
         userId : blog.userId
     });
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        const newName = event.target[0].value;
-        console.log(newName);
+    const handleChange = (event) => {
+        const newName = event.target.value;
         const blogCopy = {...blog};
         blogCopy["name"] = newName;
         setStateBlog(blogCopy);
+    }
 
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
         updateBlog(stateBlog);
         navigate("/1/my_blogs");
     }
@@ -30,11 +31,14 @@ const EditBlogForm = ({updateBlog}) => {
         <>
             <p>Edit Blog Here:</p>
             <form onSubmit={handleFormSubmit}>
-            <label htmlFor="name"> New Blog Name:</label>
+                <label htmlFor="newBlogName"> New Blog Name:</label>
                 <input 
                 type= "text" 
                 id="newBlogName" 
-                name='name' ></input>
+                name='name' 
+                onChange={handleChange}
+                value={stateBlog.name}
+                ></input>
                 <input type="submit" value='Edit Blog'/>
             </form>
         </>

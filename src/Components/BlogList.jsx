@@ -13,8 +13,8 @@ const BlogList = ({filterFunction, filteredBlogs, blogsToFilter, title, displayM
     return (
         <>
             <h2>{title}</h2>
-            <label htmlFor="Search">Search: </label>
-            <input type="text" name="Search" onChange={handleChange}></input>
+            <label htmlFor="filterBlogs">Search: </label>
+            <input type="text" name="Search" id="filterBlogs" onChange={handleChange}></input>
             <div id="blogs_list">
                 {blogComponents}
             </div>

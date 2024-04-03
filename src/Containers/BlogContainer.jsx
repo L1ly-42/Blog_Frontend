@@ -71,6 +71,14 @@ const BlogContainer = () => {
         });
     };
 
+    const deleteBlog = async (blogId) => {
+        await fetch(`http://localhost:8080/blogs/${blogId}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"}
+        });
+        setBlogs(blogs.filter((blog) => blog.id !== blogId));
+    }
+
     const blog_id = 1;
     const BlogRoutes = createBrowserRouter([
         {
@@ -83,11 +91,11 @@ const BlogContainer = () => {
             children:[
                 {
                     path:"/1/all_blogs",
-                    element: <BlogList title="All Blogs" filteredBlogs={filteredBlogs} filterFunction={filterBlogs} blogsToFilter={blogs} displayMyBlogs={false}/>
+                    element: <BlogList title="All Blogs" filteredBlogs={filteredBlogs} filterFunction={filterBlogs} blogsToFilter={blogs} displayMyBlogs={false} />
                 },
                 {
                     path: "/1/my_blogs",
-                    element: <BlogList title="My Blogs" filteredBlogs={filteredMyBlogs} filterFunction={filterMyBlogs} blogsToFilter={myBlogs} displayMyBlogs={true}/>
+                    element: <BlogList title="My Blogs" filteredBlogs={filteredMyBlogs} filterFunction={filterMyBlogs} blogsToFilter={myBlogs} displayMyBlogs={true} deleteBlog={deleteBlog} />
                 },
                 {
                     path: `/1/blogs/${blog_id}`,

@@ -30,16 +30,20 @@ useEffect(()=>{
     
     return (
         <>
+        <h2>Create Blog</h2>
+
+        <div className="createAddForm">
 
             <form onSubmit={handleSubmit}>
-                <label htmlFor="newBlogName"> New Blog Name:</label>
+                <label htmlFor="newBlogName"> New Blog Name: </label>
                 <input 
                 type= "text" 
                 id="newBlogName" 
                 name='name' 
                 required></input>
-                <input type="submit" value='Add Blog'/>
+                <input id="addBlogButton"type="submit" value='Add Blog'/>
             </form>
+        </div>
         </>
 
     );

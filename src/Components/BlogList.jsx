@@ -11,14 +11,16 @@ const BlogList = ({filterFunction, filteredBlogs, blogsToFilter, title, displayM
     });
 
     return (
-        <>
+        <div id="blogsDiv">
             <h2>{title}</h2>
-            <label htmlFor="filterBlogs">Search: </label>
-            <input type="text" name="Search" id="filterBlogs" onChange={handleChange}></input>
+            <div id="searchBar">
+                <label htmlFor="filterBlogs">Search: </label>
+                <input type="text" name="Search" id="filterBlogs" onChange={handleChange}></input>
+            </div>
             <div id="blogs_list">
                 {blogComponents}
             </div>
-        </>
+        </div>
     );
 }
 export default BlogList;

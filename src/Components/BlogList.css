@@ -1,6 +1,29 @@
+h2{
+    text-align: center;
+    margin: 20px;
+    color: #189484;
+    font-size: 22pt;
+}
+
+#filterBlogs{
+    border-radius: 7px;
+    padding: 3px;
+    font-size: 12pt;
+
+}
+
+#searchBar{
+    width: 85%;
+    margin: auto;
+    margin-bottom: 20px;
+    font-size: 13pt;
+}
+
 #blogs_list{
     background-color: rgb(206, 228, 236);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 85%;
+    margin: auto;
 }

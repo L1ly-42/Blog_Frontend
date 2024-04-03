@@ -29,8 +29,8 @@ const EditBlogForm = ({updateBlog}) => {
 
     return (
         <>
-            <p>Edit Blog Here:</p>
-            <form onSubmit={handleFormSubmit}>
+            <h3 id='editBlogTitle'>Edit Blog Here!</h3>
+            <form className="createAddForm" onSubmit={handleFormSubmit}>
                 <label htmlFor="newBlogName"> New Blog Name:</label>
                 <input 
                 type= "text" 
@@ -39,7 +39,7 @@ const EditBlogForm = ({updateBlog}) => {
                 onChange={handleChange}
                 value={stateBlog.name}
                 ></input>
-                <input type="submit" value='Edit Blog'/>
+                <input id="editBlogButton"type="submit" value='Edit Blog'/>
             </form>
         </>
     );

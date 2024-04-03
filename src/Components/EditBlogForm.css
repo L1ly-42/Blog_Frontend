@@ -1,0 +1,22 @@
+/* .createAddForm{
+    text-align: center;
+    width: 85%;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 13pt;
+} */
+
+#editBlogTitle{
+    color: rgb(235, 143, 44);
+    padding-top: 30px;
+    text-align: center;
+}
+
+#newBlogName, #editBlogButton{
+    border-radius: 7px;
+    margin-left: 5px;
+    padding: 3px;
+    font-size: 12pt;
+    border: 2px solid black ;
+}
+

@@ -1,0 +1,27 @@
+nav ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #F93E68;
+    border-radius: 15px;
+    width: 85%;
+    margin: auto;
+}
+
+nav ul li{
+    list-style-type: none;
+    text-align: center;
+}
+
+.navBarLink{
+    text-decoration: none;
+    color: white;
+    font-family: courier;
+    font-size: 15pt;
+}
+
+.navBarLink:hover{
+    font-weight: bold;
+}

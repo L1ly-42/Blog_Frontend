@@ -46,9 +46,18 @@ const BlogContainer = () => {
         setFilteredBlogs([...blogs]);
     }, [blogs]);
 
+    useEffect(() => {
+        setFilteredMyBlogs([...myBlogs]);
+    }, [myBlogs]);
+
     const filterBlogs = ((event, blogsToFilter) => {
         const filteredList = blogsToFilter.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
         setFilteredBlogs(filteredList);
+    });
+
+    const filterMyBlogs = ((event, blogsToFilter) => {
+        const filteredList = blogsToFilter.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
+        setFilteredMyBlogs(filteredList);
     });
 
     const blog_id = 1;
@@ -63,11 +72,11 @@ const BlogContainer = () => {
             children:[
                 {
                     path:"/1/all_blogs",
-                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} blogsToFilter={blogs} />
+                    element: <BlogList filteredBlogs={filteredBlogs} filterFunction={filterBlogs} blogsToFilter={blogs} />
                 },
                 {
                     path: "/1/my_blogs",
-                    element: <BlogList filteredBlogs={filteredBlogs} filterBlogs={filterBlogs} blogsToFilter={myBlogs} />
+                    element: <BlogList filteredBlogs={filteredMyBlogs} filterFunction={filterMyBlogs} blogsToFilter={myBlogs} />
                 },
                 {
                     path: `/1/blogs/${blog_id}`,

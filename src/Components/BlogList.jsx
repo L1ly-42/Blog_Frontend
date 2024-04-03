@@ -1,13 +1,13 @@
 import Blog from './Blog';
 import './BlogList.css'
-const BlogList = ({filterBlogs, filteredBlogs, blogsToFilter}) => {
+const BlogList = ({filterFunction, filteredBlogs, blogsToFilter}) => {
 
     const blogComponents = filteredBlogs.map((blog) => {
         return <Blog class="blog" key={blog.id} blog={blog} />
     });
 
     const handleChange = ((event) => {
-        filterBlogs(event, blogsToFilter);
+        filterFunction(event, blogsToFilter);
     });
 
     return (

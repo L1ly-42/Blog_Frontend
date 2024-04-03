@@ -71,6 +71,12 @@ const BlogContainer = () => {
         });
     };
 
+    const viewBlogLoader = ({params}) => {
+        return blogs.find(blog =>{
+            return blog.id === parseInt(params.blog_id);
+        });
+    };
+
     const deleteBlog = async (blogId) => {
         await fetch(`http://localhost:8080/blogs/${blogId}`, {
             method: "DELETE",
@@ -98,7 +104,8 @@ const BlogContainer = () => {
                     element: <BlogList title="My Blogs" filteredBlogs={filteredMyBlogs} filterFunction={filterMyBlogs} blogsToFilter={myBlogs} displayMyBlogs={true} deleteBlog={deleteBlog} />
                 },
                 {
-                    path: `/1/blogs/${blog_id}`,
+                    path: `/1/blogs/:blog_id`,
+                    loader: viewBlogLoader,
                     element: <ExpandedBlog />
                 },
                 {

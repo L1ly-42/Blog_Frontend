@@ -10,7 +10,11 @@ const Blog = ({blog, blogEditable, deleteBlog}) => {
         <div className="blog">
             <h3>{blog.name}</h3>
             {blogEditable ? <></> : <p>Blog Creator: {blog.user.name}</p>}
-            <button>View Blog</button>
+            <button>
+                <Link to={`/1/blogs/${blog.id}`}>
+                View Blog
+                </Link>
+            </button>
             {blogEditable ? <button><Link to={`/1/my_blogs/${blog.id}/edit`}>Edit Blog</Link></button> : <></>}
             {blogEditable ? <button onClick={handleDeleteButton}>Delete Blog</button> : <></>}
         </div>

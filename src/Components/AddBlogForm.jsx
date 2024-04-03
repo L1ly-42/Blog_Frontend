@@ -36,7 +36,8 @@ useEffect(()=>{
                 <input 
                 type= "text" 
                 id="newBlogName" 
-                name='name' ></input>
+                name='name' 
+                required></input>
                 <input type="submit" value='Add Blog'/>
             </form>
         </>

@@ -72,11 +72,21 @@ const BlogContainer = () => {
         setFilteredMyBlogs(filteredList);
     });
   
-      const editBlogLoader = ({params}) => {
+    const editBlogLoader = ({params}) => {
         return myBlogs.find(blog =>{
             return blog.id === parseInt(params.id);
         });
     };
+
+    const deleteBlog = async (blogId) => {
+        await fetch(`http://localhost:8080/blogs/${blogId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(blog)
+        });
+    }
 
     const blog_id = 1;
     const BlogRoutes = createBrowserRouter([

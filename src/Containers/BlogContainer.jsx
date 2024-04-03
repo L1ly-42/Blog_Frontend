@@ -33,7 +33,7 @@ const BlogContainer = () => {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(blog)
-        })
+        });
         const savedBlog = await response.json();
         setBlogs([...blogs,savedBlog]);
     }
@@ -44,6 +44,7 @@ const BlogContainer = () => {
 
     useEffect(() => {
         setFilteredBlogs([...blogs]);
+        setMyBlogs(blogs.filter(blogs => blogs.user.id === 1));
     }, [blogs]);
 
     useEffect(() => {

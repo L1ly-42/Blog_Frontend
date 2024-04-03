@@ -81,12 +81,9 @@ const BlogContainer = () => {
     const deleteBlog = async (blogId) => {
         await fetch(`http://localhost:8080/blogs/${blogId}`, {
             method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(blog)
+            headers: {"Content-Type": "application/json"}
         });
-        await fetchMyBlogs();
+        setBlogs(blogs.filter((blog) => blog.id !== blogId));
     }
 
     const blog_id = 1;

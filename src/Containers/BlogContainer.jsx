@@ -12,6 +12,7 @@ const BlogContainer = () => {
     const [blogs, setBlogs] = useState([]);
     const [myBlogs, setMyBlogs] = useState([]);
     const [filteredBlogs, setFilteredBlogs] = useState([]);
+    const [filteredMyBlogs, setFilteredMyBlogs] = useState([]);
     
     const fetchBlogs = async () => {
         const response = await fetch("http://localhost:8080/blogs");

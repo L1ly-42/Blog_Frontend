@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Blog.css';
 import { useState } from 'react';
 import ReactModal from 'react-modal';
@@ -6,9 +6,6 @@ import ReactModal from 'react-modal';
 const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
 
     const [modalIsOpen, setIsOpen] = useState(false);
-
-    // const blog = useLoaderData();
-
     const [stateBlog, setStateBlog] = useState({
         name : blog.name, 
         dateOfCreation : blog.dateOfCreation,
@@ -26,6 +23,7 @@ const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         updateBlog(stateBlog);
+        toggleModal();
     }
 
     const toggleModal = () => {

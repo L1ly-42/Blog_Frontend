@@ -1,7 +1,6 @@
 import ReactModal from 'react-modal';
 import './Post.css'
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 const Post = ({post, deletePost, updatePost, blogCreator}) => {
 

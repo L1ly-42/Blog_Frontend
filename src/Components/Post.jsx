@@ -11,7 +11,7 @@ const Post = ({post}) => {
     }
 
     const mappedComments = (post.comments.map((comment) => {
-        return   <li>{JSON.stringify(comment.text)}</li>
+        return   <li>{comment.userName}{comment.text}</li>
     }))
 
     return ( 

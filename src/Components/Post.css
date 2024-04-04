@@ -19,3 +19,11 @@
 .postContent img{
     width:100%;
 }
+
+.postActionsRight button{
+    border-radius: 7px;
+    padding: 3px;
+    font-size: 12pt;
+    text-decoration: none;
+    margin-left: 5px;
+}

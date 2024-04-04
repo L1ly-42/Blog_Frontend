@@ -49,3 +49,32 @@ h2{
     color: black;
 
 }
+
+/* CSS For Edit Blog Modal */
+
+#editBlogTitle{
+    /* color: rgb(235, 143, 44); */
+    color: rgb(189, 112, 24);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#newBlogName {
+    border-radius: 7px;
+    margin-top: 7px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    padding: 3px;
+    font-size: 12pt;
+}
+
+#editBlogButton {
+    border-radius: 5px;
+    height: 27px;
+
+}
+
+#closeButton {
+    border-radius: 5px;
+}

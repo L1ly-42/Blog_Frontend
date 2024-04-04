@@ -51,3 +51,38 @@
     width: 100px;
     font-size: 12pt;
 }
+
+#editPostTitle{
+    /* color: rgb(235, 143, 44); */
+    color: rgb(189, 112, 24);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.editPostForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.editPostForm label{
+    margin-top: 15px;
+}
+
+.editPostForm #submit{
+    border-radius: 7px;
+    padding: 3px;
+    width: 100px;
+    font-size: 12pt;
+    text-decoration: none;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.editPostContainer button{
+    border-radius: 7px;
+    padding: 3px;
+    width: 100px;
+    font-size: 12pt;
+    text-decoration: none;
+    margin-top: 15px;
+}

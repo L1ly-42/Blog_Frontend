@@ -88,13 +88,20 @@ const Post = ({post, deletePost, updatePost}) => {
                         contentLabel="Edit Post Popup Box"
                         style={
                             {content:{
-                                height: "20%",
-                                width: "30%",
-                                margin: "auto"
+                                height: "300px",
+                                width: "50%",
+                                margin: "auto",
+                                textAlign: 'center',
+                                backgroundColor: 'white',
+                                border: '2px solid black',
+                                borderRadius: '7px'
                             }}
                         }
                     >
-                        <form onSubmit={handleSubmit}>
+
+                    <div className='editPostContainer'>
+                        <h3 id="editPostTitle">Edit Post Here:</h3>
+                        <form className="editPostForm" onSubmit={handleSubmit}>
 
                             <label htmlFor="postTitle">New Post Title: </label>
                             <input
@@ -130,6 +137,7 @@ const Post = ({post, deletePost, updatePost}) => {
                             <input type= "submit" id="submit"/>
 
                         </form>
+                    </div>
                     </ReactModal>
 
                     <button onClick={handleDelete}>Delete Post</button>

@@ -13,7 +13,7 @@ const UserLoginForm = ({users, handleNewUser}) => {
 
     useEffect(()=>{
         if(userId !== null) {
-            navigate(`/${userId}`);
+            navigate(`/${userId}/all_blogs`);
         }
     },[userId])
 

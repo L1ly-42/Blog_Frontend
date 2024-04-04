@@ -98,11 +98,26 @@ const BlogContainer = () => {
             children:[
                 {
                     path:"/1/all_blogs",
-                    element: <BlogList title="All Blogs" filteredBlogs={filteredBlogs} filterFunction={filterBlogs} blogsToFilter={blogs} displayMyBlogs={false} />
+                    element: <BlogList
+                                title="All Blogs"
+                                filteredBlogs={filteredBlogs}
+                                filterFunction={filterBlogs}
+                                blogsToFilter={blogs}
+                                displayMyBlogs={false}
+                                updateBlog={updateBlog}
+                            />
                 },
                 {
                     path: "/1/my_blogs",
-                    element: <BlogList title="My Blogs" filteredBlogs={filteredMyBlogs} filterFunction={filterMyBlogs} blogsToFilter={myBlogs} displayMyBlogs={true} deleteBlog={deleteBlog} />
+                    element: <BlogList
+                                title="My Blogs"
+                                filteredBlogs={filteredMyBlogs}
+                                filterFunction={filterMyBlogs}
+                                blogsToFilter={myBlogs}
+                                displayMyBlogs={true}
+                                deleteBlog={deleteBlog}
+                                updateBlog={updateBlog}
+                            />
                 },
                 {
                     path: `/1/blogs/:blog_id`,

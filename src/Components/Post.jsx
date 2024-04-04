@@ -43,7 +43,7 @@ const Post = ({post}) => {
                     >
 
                         <div className='commentsList'>
-                            <h4 id='commentsTitle'>Comments:</h4>
+                            <h4 id='editBlogTitle'>Comments:</h4>
                             <ul className='comments'>   
                                 {mappedComments}
                             </ul>

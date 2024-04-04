@@ -31,8 +31,8 @@ const ExpandedBlog = () => {
             contentLabel="Add Post Popup Box"
             style={
                 {content:{
-                    height: "20%",
-                    width: "30%",
+                    height: "300px",
+                    width: "50%",
                     margin: "auto",
                     textAlign: 'center',
                     backgroundColor: 'white',
@@ -43,7 +43,7 @@ const ExpandedBlog = () => {
         >
 
             <div className='createPostContainer'>
-                <h3>Create Post Here:</h3>
+                <h3 id="addNewPostTitle">Create Post Here:</h3>
                 <form className='createPostForm' >
                     <label htmlFor="postTitle">Post Title: </label>
                     <input type="text" name='title' id='postTitle' required/>
@@ -54,7 +54,7 @@ const ExpandedBlog = () => {
                     <label htmlFor="postContent"> Content: </label>
                     <input type="text" name="content" id="postContent" />
                     
-                    <input type= "submit" />
+                    <input type= "submit" id="submit"/>
                 </form>
                 <button onClick={toggleModal}>Close</button>
             </div>

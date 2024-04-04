@@ -27,3 +27,10 @@
     text-decoration: none;
     margin-left: 5px;
 }
+
+#commentsTitle{
+    /* color: rgb(235, 143, 44); */
+    color: rgb(189, 112, 24);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -55,13 +55,17 @@ const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
                     {content:{
                         height: "20%",
                         width: "30%",
-                        margin: "auto"
+                        margin: "auto",
+                        textAlign: 'center',
+                        backgroundColor: 'white',
+                        border: '2px solid black',
+                        borderRadius: '7px'
                     }}
-                }
+            }
             >
-            
+            <h3 id= "editBlogTitle">Edit Blog Here:</h3>
             <form onSubmit={handleFormSubmit}>
-                <label htmlFor="newBlogName"> New Blog Name:</label>
+                <label htmlFor="newBlogName"> New Blog Name: </label>
                 <input 
                 type= "text" 
                 id="newBlogName" 
@@ -69,10 +73,10 @@ const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
                 onChange={handleChange}
                 value={stateBlog.name}
                 ></input>
-                <input type="submit" value='Edit Blog'/>
+                <input id='editBlogButton' type="submit" value='Edit Blog'/>
             </form>
         
-            <button onClick={toggleModal}>Close</button>
+            <button id='closeButton' onClick={toggleModal}>Close</button>
             </ReactModal>
 
             {blogEditable ? <button onClick={handleDeleteButton}>Delete Blog</button> : <></>}

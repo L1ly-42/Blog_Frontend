@@ -22,8 +22,12 @@ const BlogContainer = () => {
         setCurrUserId(userId);
     }
 
+    const fetchUsers = async() => {
+        const response = await fetch("http://localhost:8080/users");
+        const data = await response.json();
+        setUsers(data);
+    }
  
-    
     const fetchBlogs = async () => {
         const response = await fetch("http://localhost:8080/blogs");
         const data = await response.json();
@@ -54,6 +58,7 @@ const BlogContainer = () => {
 
     useEffect(() => {
         fetchBlogs();
+        fetchUsers();
     }, []);
 
     useEffect(() => {

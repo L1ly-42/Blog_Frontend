@@ -36,6 +36,7 @@ const ExpandedBlog = ({postPost, deletePost}) => {
         setTitle("");
         setContent("");
         setMediaURL("");
+        toggleModal();
     }
 
     return (

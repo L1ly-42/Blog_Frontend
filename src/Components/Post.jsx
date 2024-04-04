@@ -5,9 +5,14 @@ import { useState } from 'react';
 const Post = ({post, deletePost}) => {
 
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
     const toggleModal = () => {
         setIsOpen(!modalIsOpen)
+    }
+
+    const toggleEditModal = () => {
+        setEditModalIsOpen(!editModalIsOpen);
     }
 
     const mappedComments = (post.comments.map((comment) => {
@@ -56,7 +61,24 @@ const Post = ({post, deletePost}) => {
                     
                     </ReactModal>
 
-                    <button>Edit Post</button>
+                    <button onClick={toggleEditModal}>Edit Post</button>
+
+                    <ReactModal
+                        portalClassName="modal"
+                        isOpen={editModalIsOpen}
+                        onRequestClose={toggleEditModal}
+                        contentLabel="Edit Post Popup Box"
+                        style={
+                            {content:{
+                                height: "20%",
+                                width: "30%",
+                                margin: "auto"
+                            }}
+                        }
+                    >
+                        
+                    </ReactModal>
+
                     <button onClick={handleDelete}>Delete Post</button>
                 </div>
             </div>

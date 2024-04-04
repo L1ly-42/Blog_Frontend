@@ -11,6 +11,8 @@ import LandingPage from "../Components/LandingPage";
 
 const BlogContainer = () => {
 
+    // UseStates
+
     const [blogs, setBlogs] = useState([]);
     const [myBlogs, setMyBlogs] = useState([]);
     const [filteredBlogs, setFilteredBlogs] = useState([]);
@@ -18,10 +20,7 @@ const BlogContainer = () => {
     const [currUserId, setCurrUserId] = useState(1);
     const [users, setUsers] = useState([]);
 
-    const handleNewUser = (userId) => {
-        setCurrUserId(userId);
-    }
-
+    // fetch requests
     const fetchUsers = async() => {
         const response = await fetch("http://localhost:8080/users");
         const data = await response.json();
@@ -55,7 +54,8 @@ const BlogContainer = () => {
         })
         await fetchBlogs();
     };
-
+    
+    // Use Effects
     useEffect(() => {
         fetchBlogs();
         fetchUsers();
@@ -69,6 +69,13 @@ const BlogContainer = () => {
     useEffect(() => {
         setFilteredMyBlogs([...myBlogs]);
     }, [myBlogs]);
+
+    // Other Functions 
+
+    const handleNewUser = (userId) => {
+        setCurrUserId(userId);
+        console.log(userId);
+    }
 
     const filterBlogs = ((event, blogsToFilter) => {
         const filteredList = blogsToFilter.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
@@ -100,6 +107,8 @@ const BlogContainer = () => {
         setBlogs(blogs.filter((blog) => blog.id !== blogId));
     }
 
+    // Routes
+
     const BlogRoutes = createBrowserRouter([
         {
             path: "/",
@@ -107,7 +116,7 @@ const BlogContainer = () => {
         },
         {
             path: `/${currUserId}`,
-            element: <NavBar />,
+            element: <NavBar currUserId={currUserId}/>,
             children:[
                 {
                     path:`/${currUserId}/all_blogs`,

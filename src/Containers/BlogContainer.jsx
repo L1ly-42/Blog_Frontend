@@ -121,7 +121,6 @@ const BlogContainer = () => {
 
     const handleNewUser = (userId) => {
         setCurrUserId(userId);
-        console.log(userId);
     }
 
     const filterBlogs = ((event, blogsToFilter) => {
@@ -134,12 +133,6 @@ const BlogContainer = () => {
         setFilteredMyBlogs(filteredList);
     });
   
-    const editBlogLoader = ({params}) => {
-        return myBlogs.find(blog =>{
-            return blog.id === parseInt(params.blog_id);
-        });
-    };
-
     const viewBlogLoader = ({params}) => {
         return blogs.find(blog =>{
             return blog.id === parseInt(params.blog_id);

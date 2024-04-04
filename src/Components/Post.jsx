@@ -11,7 +11,7 @@ const Post = ({post}) => {
     }
 
     const mappedComments = (post.comments.map((comment) => {
-        return   <li>{JSON.stringify(comment.text)}</li>
+        return   <li>{comment.userName}{comment.text}</li>
     }))
 
     return ( 
@@ -43,7 +43,7 @@ const Post = ({post}) => {
                     >
 
                         <div className='commentsList'>
-                            <h4 id='commentsTitle'>Comments:</h4>
+                            <h4 id='editBlogTitle'>Comments:</h4>
                             <ul className='comments'>   
                                 {mappedComments}
                             </ul>

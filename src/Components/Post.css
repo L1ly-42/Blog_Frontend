@@ -19,3 +19,18 @@
 .postContent img{
     width:100%;
 }
+
+.postActionsRight button{
+    border-radius: 7px;
+    padding: 3px;
+    font-size: 12pt;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+#commentsTitle{
+    /* color: rgb(235, 143, 44); */
+    color: rgb(189, 112, 24);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

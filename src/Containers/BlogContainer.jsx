@@ -128,9 +128,30 @@ const BlogContainer = () => {
             <header>
                 <h1> Blogtopia! </h1>
                 <img src={Logo} id="logo"/>
-
             </header>
-            <RouterProvider router={BlogRoutes}/>
+
+            <main>
+                <RouterProvider router={BlogRoutes}/>
+            </main>
+            
+            <footer>
+            <hr />
+                 <section>
+                    <div id="contact">
+                        <h3 id="contactTitle">Contact Us:</h3>
+                        <p>Email:</p>
+                        <a href="zsolt@brightnetwork.co.uk">admin@blogtopia.com</a>
+                        <p>Phone number: </p>
+                        <a href="tel:0207 197 9902">+44 (5182) 797 9825</a>
+                    </div>
+
+                    <div id="copyright">
+                        <p id="copyrightText"> &copy; Blogtopia 2024</p>
+                        <img src={Logo} id="footerLogo"/>
+                    </div>
+
+                </section>
+            </footer> 
         </>
 
     );

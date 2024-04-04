@@ -18,3 +18,45 @@ header{
     width: 100px;
     height: 100px;
 }
+
+main {
+    min-height: 60vh;
+}
+
+
+footer{
+    margin-top: 20px;
+    bottom: 0;
+    background-color: rgba(245, 220, 222, 0.715);
+}
+
+#contactTitle{
+    padding-bottom: 10px;
+}
+
+#contact p {
+    padding-top: 5px;
+}
+
+section {
+    padding-top: 20px;
+    width: 85%;
+    margin: auto;
+}
+
+
+
+#copyright {
+    text-align: end;
+    display: flex;
+    justify-content: end;
+}
+
+#copyrightText{
+    color: rgb(177, 2, 2);
+    margin-top: 15px;
+}
+#footerLogo {
+    width: 70px;
+    height: 70px;
+}

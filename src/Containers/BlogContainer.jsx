@@ -69,6 +69,15 @@ const BlogContainer = () => {
         setBlogs(blogs.filter((blog) => blog.id !== blogId));
     }
 
+    const updatePost = async (updatedPost, post) => {
+        await fetch(`http://localhost:8080/posts/${post.id}`, {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(updatedPost)
+        });
+        await fetchPosts();
+    }
+
     const deletePost = async (postId) => {
         await fetch(`http://localhost:8080/posts/${postId}`, {
             method: "DELETE",
@@ -174,7 +183,11 @@ const BlogContainer = () => {
                 {
                     path: `/:currUserId/blogs/:blog_id`,
                     loader: viewBlogLoader,
-                    element: <ExpandedBlog postPost={postPost} deletePost={deletePost} />
+                    element: <ExpandedBlog
+                                postPost={postPost}
+                                deletePost={deletePost}
+                                updatePost={updatePost}
+                            />
                 },
                 {
                     path: `/:currUserId/my_blogs/new`,

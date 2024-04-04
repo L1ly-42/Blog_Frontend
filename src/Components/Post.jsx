@@ -1,23 +1,60 @@
+import ReactModal from 'react-modal';
 import './Post.css'
+import { useState } from 'react';
 
 const Post = ({post}) => {
+
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    const toggleModal = () => {
+        setIsOpen(!modalIsOpen)
+    }
+
     const mappedComments = (post.comments.map((comment) => {
         return   <li>{JSON.stringify(comment.text)}</li>
     }))
+
     return ( 
-        <div>
-            <h3>{post.title}</h3>
-            {post.mediaURL ? <img src={post.mediaURL} alt="post picture"/> : <></>}
-            <p>{post.content}</p>
-            <p>Likes: {post.numberOfLikes}</p>
-            <div className='commentsList'>
-                <h4 id='commentsTitle'>Comments:</h4>
-                <ul className='comments'>   
-                    {mappedComments}
-                </ul>
+        <div className="postDiv">
+            <div className="postContent">
+                <h3>{post.title}</h3>
+                <p>{post.content}</p>
+                {post.mediaURL ? <img className="postImage" src={post.mediaURL} alt="post picture"/> : <></>}
             </div>
-            <button>Edit Post</button>
-            <button>Delete Post</button>
+
+            <div className="postActions">
+                <p>{post.numberOfLikes} 👍</p>
+
+                <div className="postActionsRight">
+                    <button onClick={toggleModal}>Open Comments</button>
+
+                    <ReactModal
+                        portalClassName="modal"
+                        isOpen={modalIsOpen}
+                        onRequestClose={toggleModal}
+                        contentLabel="Comments Popup Box"
+                        style={
+                            {content:{
+                                height: "20%",
+                                width: "30%",
+                                margin: "auto"
+                            }}
+                        }
+                    >
+
+                        <div className='commentsList'>
+                            <h4 id='commentsTitle'>Comments:</h4>
+                            <ul className='comments'>   
+                                {mappedComments}
+                            </ul>
+                        </div>
+                    
+                    </ReactModal>
+
+                    <button>Edit Post</button>
+                    <button>Delete Post</button>
+                </div>
+            </div>
         </div>
      );
 }

@@ -1,0 +1,15 @@
+.createAddForm{
+    text-align: center;
+    width: 85%;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 13pt;
+}
+
+#newBlogName, #addBlogButton{
+    border-radius: 7px;
+    margin-left: 5px;
+    padding: 3px;
+    font-size: 12pt;
+
+}

@@ -14,7 +14,7 @@
 ### URL of Backend API Github Repository
 
 ## Installation Instructions
-1. 
+1. run the following installs in the terminal: `npm install react-router` `npm install react-modal`
 2. 
 3. 
 4. 

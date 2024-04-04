@@ -39,7 +39,7 @@ const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
             <h3>{blog.name}</h3>
             {blogEditable ? <></> : <p>Blog Creator: {blog.user.name}</p>}
             <button className='blog-buttons'>
-                <Link to={`/1/blogs/${blog.id}`}>
+                <Link id ="viewBlogButton" to={`/1/blogs/${blog.id}`}>
                 View Blog
                 </Link>
             </button>

@@ -9,7 +9,6 @@ h2{
     border-radius: 7px;
     padding: 3px;
     font-size: 12pt;
-
 }
 
 #searchBar{
@@ -20,13 +19,20 @@ h2{
 }
 
 #blogs_list{
-    background-color: rgb(206, 228, 236);
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
-    justify-content: center;
     width: 85%;
     margin: auto;
 }
+
+.blog{
+    margin: 1%;
+    padding: 1em;
+    border-radius: 20px;
+    background-color: rgb(206, 228, 236);
+    width: 13%;
+    height: 150px;
 
 .blog-buttons{
     border-radius: 7px;

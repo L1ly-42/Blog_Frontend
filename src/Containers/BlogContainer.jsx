@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavBar from "../Components/NavBar";
 import BlogList from "../Components/BlogList";
@@ -17,7 +17,7 @@ const BlogContainer = () => {
     const [myBlogs, setMyBlogs] = useState([]);
     const [filteredBlogs, setFilteredBlogs] = useState([]);
     const [filteredMyBlogs, setFilteredMyBlogs] = useState([]);
-    const [currUserId, setCurrUserId] = useState(1);
+    const [currUserId, setCurrUserId] = useState(null);
     const [users, setUsers] = useState([]);
 
     // fetch requests

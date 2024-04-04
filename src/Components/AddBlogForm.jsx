@@ -4,7 +4,6 @@ import './AddBlogForm.css'
 
 const AddBlogForm = ({postBlogs}) => {
 
-const [userId, setUserId] = useState(1);
 const [blog, setBlog] = useState(null);
 const navigate = useNavigate();
 const params = useParams();
@@ -18,7 +17,7 @@ const handleSubmit = (event) => {
         name : event.target[0].value, 
         dateOfCreation : `${currentDate.getDay()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`,
         timeOfCreation : `${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()}`,
-        userId : userId
+        userId : id
     }
     setBlog({...blogNow});
 }

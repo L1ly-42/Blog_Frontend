@@ -3,7 +3,10 @@ import BlogContainer from './Containers/BlogContainer';
 
 function App() {
   return (
-    <BlogContainer />
+    <>
+          <BlogContainer />
+    </>
+
   );
 }
 

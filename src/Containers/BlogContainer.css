@@ -19,11 +19,15 @@ header{
     height: 100px;
 }
 
+main {
+    min-height: 60vh;
+}
+
+
 footer{
     margin-top: 20px;
-    /* position: fixed; */
     bottom: 0;
-    /* background-color: rgba(245, 220, 222, 0.715); */
+    background-color: rgba(245, 220, 222, 0.715);
 }
 
 #contactTitle{
@@ -38,7 +42,6 @@ section {
     padding-top: 20px;
     width: 85%;
     margin: auto;
-    margin-bottom: 20px;
 }
 
 

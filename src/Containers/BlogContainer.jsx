@@ -135,8 +135,8 @@ const BlogContainer = () => {
             </main>
             
             <footer>
-            <hr />
-                 <section>
+                <hr />
+                 <section id="footer-section">
                     <div id="contact">
                         <h3 id="contactTitle">Contact Us:</h3>
                         <p>Email:</p>

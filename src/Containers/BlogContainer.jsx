@@ -88,6 +88,10 @@ const BlogContainer = () => {
     }, []);
 
     useEffect(() => {
+        fetchBlogs();
+    }, [posts]);
+
+    useEffect(() => {
         setFilteredBlogs([...blogs]);
         setMyBlogs(blogs.filter(blogs => blogs.user.id === currUserId));
     }, [blogs]);

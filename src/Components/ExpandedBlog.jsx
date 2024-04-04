@@ -3,10 +3,10 @@ import { useLoaderData } from 'react-router-dom';
 import Post from './Post';
 import { useState } from 'react';
 import ReactModal from 'react-modal';
-const ExpandedBlog = () => {
+const ExpandedBlog = ({postPost}) => {
 
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [name, setName] = useState("");
+    const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [mediaURL, setMediaURL] = useState("");
 
@@ -27,11 +27,15 @@ const ExpandedBlog = () => {
 
         let newPost = {
             blogId: blog.id,
-            name,
+            title,
             content,
             mediaURL,
             dateOfCreation: `${currentDate.getDay()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`
         }
+        postPost(newPost);
+        setTitle("");
+        setContent("");
+        setMediaURL("");
     }
 
     return (
@@ -68,8 +72,8 @@ const ExpandedBlog = () => {
                         name='title'
                         id='postTitle'
                         required
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
+                        value={title}
+                        onChange={(event) => setTitle(event.target.value)}
                     />
 
                     <label htmlFor="postURL"> Post Image (URL only please): </label>

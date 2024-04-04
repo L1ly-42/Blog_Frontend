@@ -38,13 +38,13 @@ const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
         <div className="blog">
             <h3>{blog.name}</h3>
             {blogEditable ? <></> : <p>Blog Creator: {blog.user.name}</p>}
-            <button>
+            <button className='blog-buttons'>
                 <Link to={`/1/blogs/${blog.id}`}>
                 View Blog
                 </Link>
             </button>
             {/* {blogEditable ? <button><Link to={`/1/my_blogs/${blog.id}/edit`}>Edit Blog</Link></button> : <></>} */}
-            {blogEditable ? <button onClick={toggleModal}>Edit Blog</button> : <></>}
+            {blogEditable ? <button onClick={toggleModal} className='blog-buttons'>Edit Blog</button> : <></>}
 
             <ReactModal
                 portalClassName="modal"
@@ -72,10 +72,10 @@ const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
                 <input type="submit" value='Edit Blog'/>
             </form>
         
-            <button onClick={toggleModal}>Close</button>
+            <button onClick={toggleModal} className='blog-buttons'>Close</button>
             </ReactModal>
 
-            {blogEditable ? <button onClick={handleDeleteButton}>Delete Blog</button> : <></>}
+            {blogEditable ? <button onClick={handleDeleteButton} className='blog-buttons'>Delete Blog</button> : <></>}
         </div>
      );
 }

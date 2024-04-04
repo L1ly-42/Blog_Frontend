@@ -1,5 +1,5 @@
 import './ExpandedBlog.css'
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 import Post from './Post';
 import { useState } from 'react';
 import ReactModal from 'react-modal';
@@ -10,14 +10,18 @@ const ExpandedBlog = ({postPost, deletePost, updatePost}) => {
     const [content, setContent] = useState("");
     const [mediaURL, setMediaURL] = useState("");
 
+    const params = useParams();
+    const id = params.currUserId;
+
     const toggleModal = () => {
         setIsOpen(!modalIsOpen)
     }
 
     const blog = useLoaderData();
 
+
     const mappedPosts = (blog.posts.map((post) => {
-        return  <Post className="post" key={post.id} post={post} deletePost={deletePost} updatePost={updatePost}/>
+        return  <Post className="post" key={post.id} post={post} deletePost={deletePost} updatePost={updatePost} blogCreator={blog.user.id == id}/>
     }));
 
     const handleSubmit = (event) => {
@@ -43,7 +47,7 @@ const ExpandedBlog = ({postPost, deletePost, updatePost}) => {
         <>
         <h2>{blog.name}</h2>
         <div id="createPostButtonContainer">
-            <button id="createPostButton" onClick={toggleModal}>Create Post</button>
+            {blog.user.id == id ? <button id="createPostButton" onClick={toggleModal}>Create Post</button> : <></>}
         </div>
         
         <ReactModal

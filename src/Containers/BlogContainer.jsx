@@ -7,6 +7,7 @@ import EditBlogForm from "../Components/EditBlogForm";
 import ExpandedBlog from "../Components/ExpandedBlog";
 import Logo from "../Images/Logo.png"
 import './BlogContainer.css';
+import LandingPage from "../Components/LandingPage";
 
 const BlogContainer = () => {
 
@@ -90,7 +91,7 @@ const BlogContainer = () => {
     const BlogRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <></>,
+            element: <LandingPage />,
         },
         {
             path: "/1",

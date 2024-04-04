@@ -4,11 +4,20 @@ const UserLoginForm = () => {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [isValid, setIsValid] = useState(false);
+
+    const handleSubmit = () => {
+        handleValidation(userName, password);
+    }
+
+    const handleValidation = (user, password) => {
+    
+    }
 
     return (
         <>
             <p> Login Goes Here</p>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="username-field">Username: </label>
                 <input 
                     value={userName} 

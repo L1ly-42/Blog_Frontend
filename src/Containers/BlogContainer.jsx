@@ -15,6 +15,14 @@ const BlogContainer = () => {
     const [myBlogs, setMyBlogs] = useState([]);
     const [filteredBlogs, setFilteredBlogs] = useState([]);
     const [filteredMyBlogs, setFilteredMyBlogs] = useState([]);
+    const [currUserId, setCurrUserId] = useState(1);
+    const [users, setUsers] = useState([]);
+
+    const handleNewUser = (userId) => {
+        setCurrUserId(userId);
+    }
+
+ 
     
     const fetchBlogs = async () => {
         const response = await fetch("http://localhost:8080/blogs");
@@ -50,7 +58,7 @@ const BlogContainer = () => {
 
     useEffect(() => {
         setFilteredBlogs([...blogs]);
-        setMyBlogs(blogs.filter(blogs => blogs.user.id === 1));
+        setMyBlogs(blogs.filter(blogs => blogs.user.id === currUserId));
     }, [blogs]);
 
     useEffect(() => {
@@ -87,18 +95,17 @@ const BlogContainer = () => {
         setBlogs(blogs.filter((blog) => blog.id !== blogId));
     }
 
-    const blog_id = 1;
     const BlogRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <LandingPage />,
+            element: <LandingPage handleNewUser={handleNewUser} users={users}/>,
         },
         {
-            path: "/1",
+            path: `/${currUserId}`,
             element: <NavBar />,
             children:[
                 {
-                    path:"/1/all_blogs",
+                    path:`/${currUserId}/all_blogs`,
                     element: <BlogList
                                 title="All Blogs"
                                 filteredBlogs={filteredBlogs}
@@ -109,7 +116,7 @@ const BlogContainer = () => {
                             />
                 },
                 {
-                    path: "/1/my_blogs",
+                    path: `/${currUserId}/my_blogs`,
                     element: <BlogList
                                 title="My Blogs"
                                 filteredBlogs={filteredMyBlogs}
@@ -121,16 +128,16 @@ const BlogContainer = () => {
                             />
                 },
                 {
-                    path: `/1/blogs/:blog_id`,
+                    path: `/${currUserId}/blogs/:blog_id`,
                     loader: viewBlogLoader,
                     element: <ExpandedBlog />
                 },
                 {
-                    path: "/1/my_blogs/new",
+                    path: `/${currUserId}/my_blogs/new`,
                     element: <AddBlogForm postBlogs={postBlogs} />
                 },
                 {
-                    path: `/1/my_blogs/:blog_id/edit`,
+                    path: `/${currUserId}/my_blogs/:blog_id/edit`,
                     loader: editBlogLoader,
                     element: <EditBlogForm updateBlog={updateBlog} />
                 }

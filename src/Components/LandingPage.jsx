@@ -1,7 +1,7 @@
 import UserLoginForm from "./UserLoginForm";
 import UserRegisterForm from "./UserRegisterForm";
 
-const LandingPage = () => {
+const LandingPage = ({users, handleNewUser}) => {
     return (
         <>
             <UserLoginForm />

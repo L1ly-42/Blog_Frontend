@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import Post from './Post';
 import { useState } from 'react';
 import ReactModal from 'react-modal';
-const ExpandedBlog = ({postPost}) => {
+const ExpandedBlog = ({postPost, deletePost}) => {
 
     const [modalIsOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState("");
@@ -17,7 +17,7 @@ const ExpandedBlog = ({postPost}) => {
     const blog = useLoaderData();
 
     const mappedPosts = (blog.posts.map((post) => {
-        return  <Post className="post" key={post.id} post={post}/>
+        return  <Post className="post" key={post.id} post={post} deletePost={deletePost}/>
     }));
 
     const handleSubmit = (event) => {

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import NavBar from "../Components/NavBar";
 import BlogList from "../Components/BlogList";
 import AddBlogForm from "../Components/AddBlogForm";
-import EditBlogForm from "../Components/EditBlogForm";
 import ExpandedBlog from "../Components/ExpandedBlog";
 import Logo from "../Images/Logo.png"
 import './BlogContainer.css';
@@ -192,11 +191,6 @@ const BlogContainer = () => {
                 {
                     path: `/:currUserId/my_blogs/new`,
                     element: <AddBlogForm postBlogs={postBlogs} />
-                },
-                {
-                    path: `/:currUserId/my_blogs/:blog_id/edit`,
-                    loader: editBlogLoader,
-                    element: <EditBlogForm updateBlog={updateBlog} />
                 }
             ]
         }

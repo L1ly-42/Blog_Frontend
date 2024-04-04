@@ -2,7 +2,7 @@ import ReactModal from 'react-modal';
 import './Post.css'
 import { useState } from 'react';
 
-const Post = ({post}) => {
+const Post = ({post, deletePost}) => {
 
     const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -11,8 +11,12 @@ const Post = ({post}) => {
     }
 
     const mappedComments = (post.comments.map((comment) => {
-        return   <li>{JSON.stringify(comment.text)}</li>
-    }))
+        return   <li><b>{comment.userName}</b><br/>{comment.text}<br/><hr/></li>
+    }));
+
+    const handleDelete = () => {
+        deletePost(post.id);
+    }
 
     return ( 
         <div className="postDiv">
@@ -47,12 +51,13 @@ const Post = ({post}) => {
                             <ul className='comments'>   
                                 {mappedComments}
                             </ul>
+                            <button id="closeCommentsButton" onClick={toggleModal}>Close</button>
                         </div>
                     
                     </ReactModal>
 
                     <button>Edit Post</button>
-                    <button>Delete Post</button>
+                    <button onClick={handleDelete}>Delete Post</button>
                 </div>
             </div>
         </div>

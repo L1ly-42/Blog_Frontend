@@ -12,15 +12,15 @@ import LandingPage from "../Components/LandingPage";
 const BlogContainer = () => {
 
     // UseStates
-
     const [blogs, setBlogs] = useState([]);
     const [myBlogs, setMyBlogs] = useState([]);
     const [filteredBlogs, setFilteredBlogs] = useState([]);
     const [filteredMyBlogs, setFilteredMyBlogs] = useState([]);
     const [currUserId, setCurrUserId] = useState(null);
     const [users, setUsers] = useState([]);
+    const [posts, setPosts] = useState([]);
 
-    // fetch requests
+    // Fetch requests
     const fetchUsers = async() => {
         const response = await fetch("http://localhost:8080/users");
         const data = await response.json();
@@ -32,6 +32,12 @@ const BlogContainer = () => {
         const data = await response.json();
         setBlogs(data);
         setFilteredBlogs(data);
+    }
+
+    const fetchPosts = async () => {
+        const response = await fetch("http://localhost:8080/posts");
+        const data = await response.json();
+        setPosts(data);
     }
 
     const postBlogs = async (blog) => {
@@ -56,15 +62,45 @@ const BlogContainer = () => {
     };
     
     // Use Effects
+    const deleteBlog = async (blogId) => {
+        await fetch(`http://localhost:8080/blogs/${blogId}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"}
+        });
+        setBlogs(blogs.filter((blog) => blog.id !== blogId));
+    }
+
+    const deletePost = async (postId) => {
+        await fetch(`http://localhost:8080/posts/${postId}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"}
+        });
+        setPosts(posts.filter((post) => post.id !== postId));
+    }
+
+    const postPost = async (post) => {
+        const response = await fetch(`http://localhost:8080/posts`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(post)
+        });
+        const savedPost = await response.json();
+        setPosts([...posts, savedPost]);
+    }
+
     useEffect(() => {
         fetchBlogs();
         fetchUsers();
+        fetchPosts();
     }, []);
 
     useEffect(() => {
             setFilteredBlogs([...blogs]);
             setMyBlogs(blogs.filter(blogs => blogs.user.id === currUserId));
     }, [blogs, currUserId]);
+        fetchBlogs();
+    }, [posts]);
+
 
     useEffect(() => {
         setFilteredMyBlogs([...myBlogs]);
@@ -108,7 +144,6 @@ const BlogContainer = () => {
     }
 
     // Routes
-
     const BlogRoutes = createBrowserRouter([
         {
             path: "/",
@@ -144,7 +179,7 @@ const BlogContainer = () => {
                 {
                     path: `/:currUserId/blogs/:blog_id`,
                     loader: viewBlogLoader,
-                    element: <ExpandedBlog />
+                    element: <ExpandedBlog postPost={postPost} deletePost={deletePost} />
                 },
                 {
                     path: `/:currUserId/my_blogs/new`,

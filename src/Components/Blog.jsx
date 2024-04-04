@@ -63,7 +63,7 @@ const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
                         border: '2px solid black',
                         borderRadius: '7px'
                     }}
-            }
+                }
             >
             <h3 id= "editBlogTitle">Edit Blog Here:</h3>
             <form onSubmit={handleFormSubmit}>

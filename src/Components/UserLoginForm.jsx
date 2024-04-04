@@ -13,7 +13,7 @@ const UserLoginForm = ({users, handleNewUser}) => {
 
     useEffect(()=>{
         if(userId !== null) {
-            navigate(`/${userId}`);
+            navigate(`/${userId}/all_blogs`);
         }
     },[userId])
 
@@ -41,7 +41,8 @@ const UserLoginForm = ({users, handleNewUser}) => {
     return (
         <div id='loginContainer'>
 
-            <h3> Already Registered?</h3>
+            <h3 id="loginTitle"> Login Here:</h3>
+
             <form id='loginForm' onSubmit={handleSubmit}>
                 <label htmlFor="username-field">Username: </label>
                 <input 
@@ -61,7 +62,7 @@ const UserLoginForm = ({users, handleNewUser}) => {
                     required
                     onChange={(event)=> {setPassword(event.target.value)}}
                 />
-                <input 
+                <input id='loginButton'
                     type="Submit"
                     name="Submit"
                 />

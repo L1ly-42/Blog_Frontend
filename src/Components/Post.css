@@ -1,0 +1,21 @@
+.postDiv{
+    background-color: lightblue;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.postActions{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.postContent{
+    display: grid;
+    grid: 1fr;
+    grid-gap: 15px;
+}
+
+.postContent img{
+    width:100%;
+}

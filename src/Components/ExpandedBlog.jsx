@@ -6,7 +6,7 @@ const ExpandedBlog = () => {
 
 
     const mappedPosts = (blog.posts.map((post) => {
-        return  <Post key={post.id} post={post}/>
+        return  <Post className="post" key={post.id} post={post}/>
     }))
 
     return (

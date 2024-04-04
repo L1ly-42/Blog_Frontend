@@ -18,7 +18,6 @@ const UserLoginForm = ({users, handleNewUser}) => {
         if(isValid){
             handleNewUser(userId);
             console.log(userId);
-            debugger;
             navigate(`/${userId}`);
         }
     }

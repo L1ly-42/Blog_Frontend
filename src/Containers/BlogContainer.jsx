@@ -73,7 +73,9 @@ const BlogContainer = () => {
     // Other Functions 
 
     const handleNewUser = (userId) => {
+
         setCurrUserId(userId);
+
         console.log(userId);
     }
 
@@ -115,11 +117,11 @@ const BlogContainer = () => {
             element: <LandingPage handleNewUser={handleNewUser} users={users}/>,
         },
         {
-            path: `/${currUserId}`,
-            element: <NavBar currUserId={currUserId}/>,
+            path: `/:currUserId`,
+            element: <NavBar />,
             children:[
                 {
-                    path:`/${currUserId}/all_blogs`,
+                    path:`/:currUserId/all_blogs`,
                     element: <BlogList
                                 title="All Blogs"
                                 filteredBlogs={filteredBlogs}
@@ -130,7 +132,7 @@ const BlogContainer = () => {
                             />
                 },
                 {
-                    path: `/${currUserId}/my_blogs`,
+                    path: `/:currUserId/my_blogs`,
                     element: <BlogList
                                 title="My Blogs"
                                 filteredBlogs={filteredMyBlogs}
@@ -142,16 +144,16 @@ const BlogContainer = () => {
                             />
                 },
                 {
-                    path: `/${currUserId}/blogs/:blog_id`,
+                    path: `/:currUserId/blogs/:blog_id`,
                     loader: viewBlogLoader,
                     element: <ExpandedBlog />
                 },
                 {
-                    path: `/${currUserId}/my_blogs/new`,
+                    path: `/:currUserId/my_blogs/new`,
                     element: <AddBlogForm postBlogs={postBlogs} />
                 },
                 {
-                    path: `/${currUserId}/my_blogs/:blog_id/edit`,
+                    path: `/:currUserId/my_blogs/:blog_id/edit`,
                     loader: editBlogLoader,
                     element: <EditBlogForm updateBlog={updateBlog} />
                 }

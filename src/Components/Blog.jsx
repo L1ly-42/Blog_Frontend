@@ -1,6 +1,34 @@
 import { Link } from 'react-router-dom';
 import './Blog.css';
-const Blog = ({blog, blogEditable, deleteBlog}) => {
+import { useState } from 'react';
+import ReactModal from 'react-modal';
+
+const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
+
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [stateBlog, setStateBlog] = useState({
+        name : blog.name, 
+        dateOfCreation : blog.dateOfCreation,
+        timeOfCreation : blog.timeOfCreation,
+        userId : blog.userId
+    });
+
+    const handleChange = (event) => {
+        const newName = event.target.value;
+        const blogCopy = {...blog};
+        blogCopy["name"] = newName;
+        setStateBlog(blogCopy);
+    }
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        updateBlog(stateBlog);
+        toggleModal();
+    }
+
+    const toggleModal = () => {
+        setIsOpen(!modalIsOpen)
+    }
 
     const handleDeleteButton = () => {
         deleteBlog(blog.id);
@@ -15,7 +43,38 @@ const Blog = ({blog, blogEditable, deleteBlog}) => {
                 View Blog
                 </Link>
             </button>
-            {blogEditable ? <button><Link to={`/1/my_blogs/${blog.id}/edit`}>Edit Blog</Link></button> : <></>}
+            {/* {blogEditable ? <button><Link to={`/1/my_blogs/${blog.id}/edit`}>Edit Blog</Link></button> : <></>} */}
+            {blogEditable ? <button onClick={toggleModal}>Edit Blog</button> : <></>}
+
+            <ReactModal
+                portalClassName="modal"
+                isOpen={modalIsOpen}
+                onRequestClose={toggleModal}
+                contentLabel="Edit Blog Popup Box"
+                style={
+                    {content:{
+                        height: "20%",
+                        width: "30%",
+                        margin: "auto"
+                    }}
+                }
+            >
+            
+            <form onSubmit={handleFormSubmit}>
+                <label htmlFor="newBlogName"> New Blog Name:</label>
+                <input 
+                type= "text" 
+                id="newBlogName" 
+                name='name' 
+                onChange={handleChange}
+                value={stateBlog.name}
+                ></input>
+                <input type="submit" value='Edit Blog'/>
+            </form>
+        
+            <button onClick={toggleModal}>Close</button>
+            </ReactModal>
+
             {blogEditable ? <button onClick={handleDeleteButton}>Delete Blog</button> : <></>}
         </div>
      );

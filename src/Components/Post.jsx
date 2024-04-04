@@ -1,8 +1,9 @@
 import ReactModal from 'react-modal';
 import './Post.css'
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-const Post = ({post, deletePost, updatePost}) => {
+const Post = ({post, deletePost, updatePost, blogCreator}) => {
 
     const [modalIsOpen, setIsOpen] = useState(false);
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
@@ -10,6 +11,7 @@ const Post = ({post, deletePost, updatePost}) => {
     const [title, setTitle] = useState(post.title);
     const [content, setContent] = useState(post.content);
     const [mediaURL, setMediaURL] = useState(post.mediaURL);
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -37,6 +39,7 @@ const Post = ({post, deletePost, updatePost}) => {
     const handleDelete = () => {
         deletePost(post.id);
     }
+
 
     return ( 
         <div className="postDiv">
@@ -76,7 +79,7 @@ const Post = ({post, deletePost, updatePost}) => {
                     
                     </ReactModal>
 
-                    <button onClick={toggleEditModal}>Edit Post</button>
+                    {blogCreator ? <button onClick={toggleEditModal}>Edit Post</button> : <></>}
 
                     <ReactModal
                         portalClassName="modal"
@@ -134,7 +137,7 @@ const Post = ({post, deletePost, updatePost}) => {
                     </div>
                     </ReactModal>
 
-                    <button onClick={handleDelete}>Delete Post</button>
+                    {blogCreator ? <button onClick={handleDelete}>Delete Post</button> : <></>} 
                 </div>
             </div>
         </div>

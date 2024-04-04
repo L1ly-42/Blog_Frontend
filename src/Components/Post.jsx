@@ -43,7 +43,7 @@ const Post = ({post, deletePost, updatePost}) => {
             <div className="postContent">
                 <h3>{post.title}</h3>
                 <p>{post.content}</p>
-                {post.mediaURL ? <img className="postImage" src={post.mediaURL} alt="post picture"/> : <></>}
+                {post.mediaURL ? <img id="postImage" src={post.mediaURL} alt="post picture"/> : <></>}
             </div>
 
             <div className="postActions">

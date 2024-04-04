@@ -2,6 +2,7 @@
     background-color: lightblue;
     padding: 15px;
     border-radius: 15px;
+    text-align: center;
 }
 
 .postActions{
@@ -14,12 +15,18 @@
     display: grid;
     grid: 1fr;
     grid-gap: 15px;
+
 }
 
 .postContent img{
     width:100%;
 }
 
+#postImage{
+    max-width: 250px;
+    max-height: 400px;
+    margin: auto;
+}
 .postActionsRight button{
     border-radius: 7px;
     padding: 3px;
@@ -29,7 +36,6 @@
 }
 
 #commentsTitle{
-    /* color: rgb(235, 143, 44); */
     color: rgb(189, 112, 24);
     margin-top: 10px;
     margin-bottom: 10px;
@@ -53,7 +59,6 @@
 }
 
 #editPostTitle{
-    /* color: rgb(235, 143, 44); */
     color: rgb(189, 112, 24);
     margin-top: 10px;
     margin-bottom: 10px;

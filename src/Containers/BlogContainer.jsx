@@ -62,8 +62,8 @@ const BlogContainer = () => {
     }, []);
 
     useEffect(() => {
-        setFilteredBlogs([...blogs]);
-        setMyBlogs(blogs.filter(blogs => blogs.user.id === currUserId));
+            setFilteredBlogs([...blogs]);
+            setMyBlogs(blogs.filter(blogs => blogs.user.id === currUserId));
     }, [blogs, currUserId]);
 
     useEffect(() => {
@@ -73,9 +73,7 @@ const BlogContainer = () => {
     // Other Functions 
 
     const handleNewUser = (userId) => {
-
         setCurrUserId(userId);
-
         console.log(userId);
     }
 

@@ -1,5 +1,5 @@
 import './UserLoginForm.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const UserLoginForm = ({users, handleNewUser}) => {
@@ -11,21 +11,21 @@ const UserLoginForm = ({users, handleNewUser}) => {
 
     const navigate = useNavigate();
 
+    useEffect(()=>{
+        if(userId !== null) {
+            navigate(`/${userId}`);
+        }
+    },[userId])
+
     const handleSubmit = (event) => {
         event.preventDefault();
         handleValidation(userName, password);
 
-        if(isValid){
-            handleNewUser(userId);
-            console.log(userId);
-            navigate(`/${userId}`);
-        }
     }
 
     const handleValidation = (username, password) => {
         const userExistence = users.findIndex(user =>
             user.name === username);
-        
 
         const passwordExistence = users.findIndex(user =>
             user.password === password
@@ -33,6 +33,7 @@ const UserLoginForm = ({users, handleNewUser}) => {
         if(userExistence !== -1 && passwordExistence !== -1){
             setIsValid(true);
             setUserId(users[userExistence].id);
+            handleNewUser(users[userExistence].id);
         };
     
     };
@@ -41,7 +42,7 @@ const UserLoginForm = ({users, handleNewUser}) => {
         <div id='loginContainer'>
 
             <h3> Already Registered?</h3>
-            <form id='loginForm'onSubmit={handleSubmit}>
+            <form id='loginForm' onSubmit={handleSubmit}>
                 <label htmlFor="username-field">Username: </label>
                 <input 
                     value={userName} 

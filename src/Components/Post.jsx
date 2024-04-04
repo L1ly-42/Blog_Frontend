@@ -7,9 +7,9 @@ const Post = ({post, deletePost, updatePost}) => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
-    const [mediaURL, setMediaURL] = useState("");
+    const [title, setTitle] = useState(post.title);
+    const [content, setContent] = useState(post.content);
+    const [mediaURL, setMediaURL] = useState(post.mediaURL);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,9 +19,6 @@ const Post = ({post, deletePost, updatePost}) => {
             mediaURL
         }
         updatePost(updatedPost, post);
-        setTitle("");
-        setContent("");
-        setMediaURL("");
         toggleEditModal();
     }
 
@@ -110,7 +107,6 @@ const Post = ({post, deletePost, updatePost}) => {
                                 id='postTitle'
                                 required
                                 value={title}
-                                placeholder={post.title}
                                 onChange={(event) => setTitle(event.target.value)}
                             />
 
@@ -120,7 +116,6 @@ const Post = ({post, deletePost, updatePost}) => {
                                 name='url'
                                 id='postURL'
                                 value={mediaURL}
-                                placeholder={post.mediaURL}
                                 onChange={(event) => setMediaURL(event.target.value)}
                             />
 
@@ -130,7 +125,6 @@ const Post = ({post, deletePost, updatePost}) => {
                                 name="content"
                                 id="postContent" 
                                 value={content}
-                                placeholder={post.content}
                                 onChange={(event) => setContent(event.target.value)}
                             />
                             

@@ -1,0 +1,10 @@
+#LandingPageTitle {
+    margin-right: 47px;
+}
+
+#LandingPageForms {
+    display: flex;
+    justify-content: space-around;
+    width: 85%;
+    
+}

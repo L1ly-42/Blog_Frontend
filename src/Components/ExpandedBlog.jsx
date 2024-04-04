@@ -3,9 +3,12 @@ import { useLoaderData } from 'react-router-dom';
 import Post from './Post';
 import { useState } from 'react';
 import ReactModal from 'react-modal';
-const ExpandedBlog = () => {
+const ExpandedBlog = ({postPost, deletePost, updatePost}) => {
 
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+    const [mediaURL, setMediaURL] = useState("");
 
     const toggleModal = () => {
         setIsOpen(!modalIsOpen)
@@ -14,8 +17,27 @@ const ExpandedBlog = () => {
     const blog = useLoaderData();
 
     const mappedPosts = (blog.posts.map((post) => {
-        return  <Post className="post" key={post.id} post={post}/>
-    }))
+        return  <Post className="post" key={post.id} post={post} deletePost={deletePost} updatePost={updatePost}/>
+    }));
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const date = Date.now();
+        let currentDate = new Date(date);
+
+        let newPost = {
+            blogId: blog.id,
+            title,
+            content,
+            mediaURL,
+            dateOfCreation: `${currentDate.getDay()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`
+        }
+        postPost(newPost);
+        setTitle("");
+        setContent("");
+        setMediaURL("");
+        toggleModal();
+    }
 
     return (
         <>
@@ -44,15 +66,34 @@ const ExpandedBlog = () => {
 
             <div className='createPostContainer'>
                 <h3 id="addNewPostTitle">Create Post Here:</h3>
-                <form className='createPostForm' >
+                <form className='createPostForm' onSubmit={handleSubmit}>
                     <label htmlFor="postTitle">Post Title: </label>
-                    <input type="text" name='title' id='postTitle' required/>
+                    <input
+                        type="text"
+                        name='title'
+                        id='postTitle'
+                        required
+                        value={title}
+                        onChange={(event) => setTitle(event.target.value)}
+                    />
 
                     <label htmlFor="postURL"> Post Image (URL only please): </label>
-                    <input type="text" name='url' id='postURL'/>
+                    <input
+                        type="text"
+                        name='url'
+                        id='postURL'
+                        value={mediaURL}
+                        onChange={(event) => setMediaURL(event.target.value)}
+                    />
 
                     <label htmlFor="postContent"> Content: </label>
-                    <input type="text" name="content" id="postContent" />
+                    <input
+                        type="text"
+                        name="content"
+                        id="postContent" 
+                        value={content}
+                        onChange={(event) => setContent(event.target.value)}
+                    />
                     
                     <input type= "submit" id="submit"/>
                 </form>

@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavBar from "../Components/NavBar";
 import BlogList from "../Components/BlogList";
@@ -11,17 +11,16 @@ import LandingPage from "../Components/LandingPage";
 
 const BlogContainer = () => {
 
+    // UseStates
     const [blogs, setBlogs] = useState([]);
     const [myBlogs, setMyBlogs] = useState([]);
     const [filteredBlogs, setFilteredBlogs] = useState([]);
     const [filteredMyBlogs, setFilteredMyBlogs] = useState([]);
-    const [currUserId, setCurrUserId] = useState(1);
+    const [currUserId, setCurrUserId] = useState(null);
     const [users, setUsers] = useState([]);
+    const [posts, setPosts] = useState([]);
 
-    const handleNewUser = (userId) => {
-        setCurrUserId(userId);
-    }
-
+    // Fetch requests
     const fetchUsers = async() => {
         const response = await fetch("http://localhost:8080/users");
         const data = await response.json();
@@ -33,6 +32,12 @@ const BlogContainer = () => {
         const data = await response.json();
         setBlogs(data);
         setFilteredBlogs(data);
+    }
+
+    const fetchPosts = async () => {
+        const response = await fetch("http://localhost:8080/posts");
+        const data = await response.json();
+        setPosts(data);
     }
 
     const postBlogs = async (blog) => {
@@ -55,20 +60,70 @@ const BlogContainer = () => {
         })
         await fetchBlogs();
     };
+    
+    const deleteBlog = async (blogId) => {
+        await fetch(`http://localhost:8080/blogs/${blogId}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"}
+        });
+        setBlogs(blogs.filter((blog) => blog.id !== blogId));
+    }
+
+    const updatePost = async (updatedPost, post) => {
+        await fetch(`http://localhost:8080/posts/${post.id}`, {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(updatedPost)
+        });
+        await fetchPosts();
+    }
+
+    const deletePost = async (postId) => {
+        await fetch(`http://localhost:8080/posts/${postId}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"}
+        });
+        setPosts(posts.filter((post) => post.id !== postId));
+    }
+
+    const postPost = async (post) => {
+        const response = await fetch(`http://localhost:8080/posts`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(post)
+        });
+        const savedPost = await response.json();
+        setPosts([...posts, savedPost]);
+    }
+
+    // Use Effects
 
     useEffect(() => {
         fetchBlogs();
         fetchUsers();
+        fetchPosts();
     }, []);
 
     useEffect(() => {
-        setFilteredBlogs([...blogs]);
-        setMyBlogs(blogs.filter(blogs => blogs.user.id === currUserId));
-    }, [blogs]);
+            setFilteredBlogs([...blogs]);
+            setMyBlogs(blogs.filter(blogs => blogs.user.id === currUserId));
+    }, [blogs, currUserId]);
+
+    useEffect(()=>{
+        fetchBlogs();
+    }, [posts]);
+
 
     useEffect(() => {
         setFilteredMyBlogs([...myBlogs]);
     }, [myBlogs]);
+
+    // Other Functions 
+
+    const handleNewUser = (userId) => {
+        setCurrUserId(userId);
+        console.log(userId);
+    }
 
     const filterBlogs = ((event, blogsToFilter) => {
         const filteredList = blogsToFilter.filter((blog) => blog.name.toLowerCase().includes(event.target.value.toLowerCase()));
@@ -92,25 +147,18 @@ const BlogContainer = () => {
         });
     };
 
-    const deleteBlog = async (blogId) => {
-        await fetch(`http://localhost:8080/blogs/${blogId}`, {
-            method: "DELETE",
-            headers: {"Content-Type": "application/json"}
-        });
-        setBlogs(blogs.filter((blog) => blog.id !== blogId));
-    }
-
+    // Routes
     const BlogRoutes = createBrowserRouter([
         {
             path: "/",
             element: <LandingPage handleNewUser={handleNewUser} users={users}/>,
         },
         {
-            path: `/${currUserId}`,
+            path: `/:currUserId`,
             element: <NavBar />,
             children:[
                 {
-                    path:`/${currUserId}/all_blogs`,
+                    path:`/:currUserId/all_blogs`,
                     element: <BlogList
                                 title="All Blogs"
                                 filteredBlogs={filteredBlogs}
@@ -121,7 +169,7 @@ const BlogContainer = () => {
                             />
                 },
                 {
-                    path: `/${currUserId}/my_blogs`,
+                    path: `/:currUserId/my_blogs`,
                     element: <BlogList
                                 title="My Blogs"
                                 filteredBlogs={filteredMyBlogs}
@@ -133,16 +181,20 @@ const BlogContainer = () => {
                             />
                 },
                 {
-                    path: `/${currUserId}/blogs/:blog_id`,
+                    path: `/:currUserId/blogs/:blog_id`,
                     loader: viewBlogLoader,
-                    element: <ExpandedBlog />
+                    element: <ExpandedBlog
+                                postPost={postPost}
+                                deletePost={deletePost}
+                                updatePost={updatePost}
+                            />
                 },
                 {
-                    path: `/${currUserId}/my_blogs/new`,
+                    path: `/:currUserId/my_blogs/new`,
                     element: <AddBlogForm postBlogs={postBlogs} />
                 },
                 {
-                    path: `/${currUserId}/my_blogs/:blog_id/edit`,
+                    path: `/:currUserId/my_blogs/:blog_id/edit`,
                     loader: editBlogLoader,
                     element: <EditBlogForm updateBlog={updateBlog} />
                 }

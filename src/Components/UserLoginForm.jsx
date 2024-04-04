@@ -1,23 +1,48 @@
-import { useState } from "react";
+import './UserLoginForm.css';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const UserLoginForm = () => {
+const UserLoginForm = ({users, handleNewUser}) => {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [isValid, setIsValid] = useState(false);
+    const [userId, setUserId] = useState(null);
 
-    const handleSubmit = () => {
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(userId !== null) {
+            navigate(`/${userId}`);
+        }
+    },[userId])
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
         handleValidation(userName, password);
+
     }
 
-    const handleValidation = (user, password) => {
+    const handleValidation = (username, password) => {
+        const userExistence = users.findIndex(user =>
+            user.name === username);
+
+        const passwordExistence = users.findIndex(user =>
+            user.password === password
+        );
+        if(userExistence !== -1 && passwordExistence !== -1){
+            setIsValid(true);
+            setUserId(users[userExistence].id);
+            handleNewUser(users[userExistence].id);
+        };
     
-    }
+    };
 
     return (
-        <>
-            <p> Login Goes Here</p>
-            <form onSubmit={handleSubmit}>
+        <div id='loginContainer'>
+
+            <h3> Already Registered?</h3>
+            <form id='loginForm' onSubmit={handleSubmit}>
                 <label htmlFor="username-field">Username: </label>
                 <input 
                     value={userName} 
@@ -38,10 +63,10 @@ const UserLoginForm = () => {
                 />
                 <input 
                     type="Submit"
-                    value="Submit"
+                    name="Submit"
                 />
             </form>
-        </>
+        </div>
     );
 }
  

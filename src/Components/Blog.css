@@ -6,3 +6,10 @@
     align-items: center;
     min-width: 100px;
 }
+
+#editBlogTitle{
+    /* color: rgb(235, 143, 44); */
+    color: rgb(189, 112, 24);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

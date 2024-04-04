@@ -11,7 +11,7 @@ const Post = ({post}) => {
     }
 
     const mappedComments = (post.comments.map((comment) => {
-        return   <li>{JSON.stringify(comment.text)}</li>
+        return   <li><b>{comment.userName}</b><br/>{comment.text}<br/><hr/></li>
     }))
 
     return ( 
@@ -47,6 +47,7 @@ const Post = ({post}) => {
                             <ul className='comments'>   
                                 {mappedComments}
                             </ul>
+                            <button id="closeCommentsButton" onClick={toggleModal}>Close</button>
                         </div>
                     
                     </ReactModal>

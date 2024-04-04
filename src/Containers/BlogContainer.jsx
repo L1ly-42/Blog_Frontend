@@ -17,6 +17,7 @@ const BlogContainer = () => {
     const [filteredMyBlogs, setFilteredMyBlogs] = useState([]);
     const [currUserId, setCurrUserId] = useState(1);
     const [users, setUsers] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     const handleNewUser = (userId) => {
         setCurrUserId(userId);
@@ -33,6 +34,12 @@ const BlogContainer = () => {
         const data = await response.json();
         setBlogs(data);
         setFilteredBlogs(data);
+    }
+
+    const fetchPosts = async () => {
+        const response = await fetch("http://localhost:8080/posts");
+        const data = await response.json();
+        setPosts(data);
     }
 
     const postBlogs = async (blog) => {
@@ -56,10 +63,41 @@ const BlogContainer = () => {
         await fetchBlogs();
     };
 
+    const deleteBlog = async (blogId) => {
+        await fetch(`http://localhost:8080/blogs/${blogId}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"}
+        });
+        setBlogs(blogs.filter((blog) => blog.id !== blogId));
+    }
+
+    const deletePost = async (postId) => {
+        await fetch(`http://localhost:8080/posts/${postId}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"}
+        });
+        setPosts(posts.filter((post) => post.id !== postId));
+    }
+
+    const postPost = async (post) => {
+        const response = await fetch(`http://localhost:8080/posts`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(post)
+        });
+        const savedPost = await response.json();
+        setPosts([...posts, savedPost]);
+    }
+
     useEffect(() => {
         fetchBlogs();
         fetchUsers();
+        fetchPosts();
     }, []);
+
+    useEffect(() => {
+        fetchBlogs();
+    }, [posts]);
 
     useEffect(() => {
         setFilteredBlogs([...blogs]);
@@ -91,14 +129,6 @@ const BlogContainer = () => {
             return blog.id === parseInt(params.blog_id);
         });
     };
-
-    const deleteBlog = async (blogId) => {
-        await fetch(`http://localhost:8080/blogs/${blogId}`, {
-            method: "DELETE",
-            headers: {"Content-Type": "application/json"}
-        });
-        setBlogs(blogs.filter((blog) => blog.id !== blogId));
-    }
 
     const BlogRoutes = createBrowserRouter([
         {
@@ -135,7 +165,7 @@ const BlogContainer = () => {
                 {
                     path: `/${currUserId}/blogs/:blog_id`,
                     loader: viewBlogLoader,
-                    element: <ExpandedBlog />
+                    element: <ExpandedBlog postPost={postPost} deletePost={deletePost} />
                 },
                 {
                     path: `/${currUserId}/my_blogs/new`,

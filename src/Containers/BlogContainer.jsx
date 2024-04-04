@@ -61,7 +61,6 @@ const BlogContainer = () => {
         await fetchBlogs();
     };
     
-    // Use Effects
     const deleteBlog = async (blogId) => {
         await fetch(`http://localhost:8080/blogs/${blogId}`, {
             method: "DELETE",
@@ -88,6 +87,8 @@ const BlogContainer = () => {
         setPosts([...posts, savedPost]);
     }
 
+    // Use Effects
+
     useEffect(() => {
         fetchBlogs();
         fetchUsers();
@@ -98,6 +99,8 @@ const BlogContainer = () => {
             setFilteredBlogs([...blogs]);
             setMyBlogs(blogs.filter(blogs => blogs.user.id === currUserId));
     }, [blogs, currUserId]);
+
+    useEffect(()=>{
         fetchBlogs();
     }, [posts]);
 
@@ -134,14 +137,6 @@ const BlogContainer = () => {
             return blog.id === parseInt(params.blog_id);
         });
     };
-
-    const deleteBlog = async (blogId) => {
-        await fetch(`http://localhost:8080/blogs/${blogId}`, {
-            method: "DELETE",
-            headers: {"Content-Type": "application/json"}
-        });
-        setBlogs(blogs.filter((blog) => blog.id !== blogId));
-    }
 
     // Routes
     const BlogRoutes = createBrowserRouter([

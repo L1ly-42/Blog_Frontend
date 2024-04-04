@@ -1,0 +1,7 @@
+.postlist{
+    width: 85%;
+    margin: auto;
+    display: grid;
+    grid: 1fr;
+    grid-gap: 10px;
+}

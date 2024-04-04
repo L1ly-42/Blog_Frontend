@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import './EditBlogForm.css'
 import { useState } from 'react';
 
@@ -20,11 +20,13 @@ const EditBlogForm = ({updateBlog}) => {
         blogCopy["name"] = newName;
         setStateBlog(blogCopy);
     }
+    const params = useParams();
+    const id = params.currUserId;
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
         updateBlog(stateBlog);
-        navigate("/1/my_blogs");
+        navigate(`/${id}/my_blogs`);
     }
 
     return (

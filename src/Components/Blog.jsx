@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Blog.css';
 import { useState } from 'react';
 import ReactModal from 'react-modal';
@@ -34,16 +34,18 @@ const Blog = ({blog, blogEditable, deleteBlog, updateBlog}) => {
         deleteBlog(blog.id);
     }
 
+    const params = useParams();
+    const id = params.currUserId;
+
     return (
         <div className="blog">
             <h3>{blog.name}</h3>
             {blogEditable ? <></> : <p>Blog Creator: {blog.user.name}</p>}
             <button className='blog-buttons'>
-                <Link id ="viewBlogButton" to={`/1/blogs/${blog.id}`}>
+                <Link id ="viewBlogButton" to={`/${id}/blogs/${blog.id}`}>
                 View Blog
                 </Link>
             </button>
-            {/* {blogEditable ? <button><Link to={`/1/my_blogs/${blog.id}/edit`}>Edit Blog</Link></button> : <></>} */}
             {blogEditable ? <button onClick={toggleModal} className='blog-buttons'>Edit Blog</button> : <></>}
 
             <ReactModal

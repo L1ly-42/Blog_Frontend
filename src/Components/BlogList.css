@@ -29,10 +29,8 @@ h2{
 .blog{
     margin: 1%;
     padding: 1em;
-    border-color: #0e605d;
-    border-style: groove;
     border-radius: 20px;
-    background-color: #0ddbd4;
+    background-color: rgb(206, 228, 236);
     width: 13%;
     height: 150px;
 }

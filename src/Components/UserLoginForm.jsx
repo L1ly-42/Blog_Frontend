@@ -55,6 +55,7 @@ const UserLoginForm = ({users, handleNewUser}) => {
                 />
                 <label htmlFor="password-field">Password: </label>
                 <input 
+                    type='password'
                     value={password} 
                     name="password"
                     placeholder="Enter password"

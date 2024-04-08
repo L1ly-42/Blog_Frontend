@@ -20,7 +20,6 @@ const UserLoginForm = ({users, handleNewUser}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         handleValidation(userName, password);
-
     }
 
     const handleValidation = (username, password) => {

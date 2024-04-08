@@ -207,7 +207,7 @@ const BlogContainer = () => {
                     <div id="contact">
                         <h3 id="contactTitle">Contact Us:</h3>
                         <p>Email:</p>
-                        <a href="zsolt@brightnetwork.co.uk">admin@blogtopia.com</a>
+                        <a href="admin@blogtopia.com">admin@blogtopia.com</a>
                         <p>Phone number: </p>
                         <a href="tel:0207 197 9902">+44 (5182) 797 9825</a>
                     </div>

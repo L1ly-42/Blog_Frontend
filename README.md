@@ -29,6 +29,8 @@ Some changes were made to the original backend to facilitate the needs of the fr
 
 ## MVP and Extensions
 
+Each point of the MVP and Extension is organised into the route the functionality is associated with. Functionality that was successfully implemented is indicated with a ✅
+
 ### MVP
 - All Blogs Page: localhost:3000/:user_id/all_blogs
   - User can search for a blog ✅

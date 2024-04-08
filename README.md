@@ -64,11 +64,10 @@ Some changes were made to the original backend to facilitate the needs of the fr
 
 ## Diagrams
 ### Wireframes
-
+https://github.com/sahilpatel1906/Blog_Frontend/blob/main/Diagrams/WireframesAndPartialComponentDiagrams.png
 
 ### Component Diagram
-
-
+https://github.com/sahilpatel1906/Blog_Frontend/blob/main/Diagrams/MasterComponentDiagram.png
 
 
 ## Credits and Acknowledgements

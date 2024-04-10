@@ -20,7 +20,12 @@ Create a frontend for a blog site API. Users would be able to log in to their ac
 ### URL of Backend API Github Repository
 https://github.com/sahilpatel1906/Personal_Blog <br/>
 
-Some changes were made to the original backend to facilitate the needs of the frontend.
+Some changes were made to the original backend to facilitate the needs of the frontend:
+- Added CORS configurations
+- Fixed like counter for comments
+- Fixed delete blog route
+- Added more images within dataloader
+- Stopped ignoring password field in user model
 
 ## Installation Instructions
 1. clone this repository (frontend)
